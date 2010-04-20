@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <parent>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-parent</artifactId>
+      <version>9</version>
+   </parent>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>org.jboss.weld</groupId>
+   <artifactId>weld-wicket</artifactId>
+   <version>1.0.2-SNAPSHOT</version>
+   <name>Weld Wicket support</name>
+
+   <description>Weld support for Apache Wicket</description>
+
+   <developers>
+      <developer>
+         <name>Clint Popetz</name>
+         <roles>
+            <role>Module lead</role>
+         </roles>
+      </developer>
+   </developers>
+   
+   <url>http://www.seamframework.org/Weld</url>
+   <licenses>
+      <license>
+         <name>Apache License, Version 2.0</name>
+         <distribution>repo</distribution>
+         <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      </license>
+   </licenses>
+
+   <issueManagement>
+      <system>JIRA</system>
+      <url>https://jira.jboss.org/jira/browse/WELDX/component/12312752</url>
+   </issueManagement>
+
+
+
+   <properties>
+      <weld.api.version>1.0-SP1</weld.api.version>
+      <weld.core.version>1.0.1-Final</weld.core.version>
+      <testng.version>5.10</testng.version>
+      <wicket.version>1.4.1</wicket.version>
+   </properties>
+
+   <!-- Import the BOMs -->
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-api-bom</artifactId>
+            <version>${weld.api.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core-bom</artifactId>
+            <version>${weld.core.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket</artifactId>
+            <version>${wicket.version}</version>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.testng</groupId>
+         <artifactId>testng</artifactId>
+         <scope>test</scope>
+         <version>${testng.version}</version>
+         <classifier>jdk15</classifier>
+         <exclusions>
+            <exclusion>
+               <artifactId>junit</artifactId>
+               <groupId>junit</groupId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+
+      <dependency>
+         <groupId>javax.enterprise</groupId>
+         <artifactId>cdi-api</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.weld</groupId>
+         <artifactId>weld-core</artifactId>
+         <scope>provided</scope>
+      </dependency>
+
+      <!-- WELDX-36 -->
+      <dependency>
+         <groupId>javax.portlet</groupId>
+         <artifactId>portlet-api</artifactId>
+         <version>1.0</version>
+      </dependency>
+
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>servlet-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.apache.wicket</groupId>
+         <artifactId>wicket</artifactId>
+      </dependency>
+
+   </dependencies>
+
+   <scm>
+      <connection>scm:svn:http://anonsvn.jboss.org/repos/weld/wicket/trunk</connection>
+      <developerConnection>scm:svn:https://svn.jboss.org/repos/weld/wicket/trunk</developerConnection>
+      <url>http://fisheye.jboss.org/browse/weld/wicket/trunk</url>
+   </scm>
+
+</project>
