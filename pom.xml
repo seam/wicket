@@ -116,9 +116,9 @@
    </dependencies>
 
    <scm>
-      <connection>scm:svn:http://anonsvn.jboss.org/repos/weld/wicket/trunk</connection>
-      <developerConnection>scm:svn:https://svn.jboss.org/repos/weld/wicket/trunk</developerConnection>
-      <url>http://fisheye.jboss.org/browse/weld/wicket/trunk</url>
+      <connection>scm:git:git://github.com/seam/wicket.git</connection>
+      <developerConnection>scm:git:git@github.com:seam/wicket.git</developerConnection>
+      <url>http://github.com/seam/wicket</url>
    </scm>
 
 </project>
