@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
+<chapter id="wicket.installation">
+	<title>Installation</title>
+	<para>
+		The seam-wicket-api.jar should be placed in the web application library folder. If you are using 
+    <ulink url="http://maven.apache.org/">Maven</ulink> as your build tool, you can add the
+		following dependency to your pom.xml file:
+	</para>
+	<programlisting role="XML"><![CDATA[<dependency>
+	<groupId>org.jboss.seam.wicket</groupId>
+	<artifactId>seam-wicket-api</artifactId>
+	<version>${seam-wicket-version}</version>
+</dependency>]]></programlisting>	
+	<tip>
+		<para>Replace ${seam-wicket-version} with the most recent or appropriate version of Seam Wicket.</para>			
+	</tip>
+  <para>
+    You must also bootstrap Weld according to your environment.  As Wicket is normally used in a servlet (non-JavaEE) environment,
+		this is most easily accomplished using the weld servlet integration, described in the <ulink url="http://docs.jboss.org/weld/reference/latest/en-US/html/environments.html">Weld Reference</ulink>.
+	</para>
+	<para>
+		You must extend org.jboss.seam.wicket.SeamApplication rather than org.apache.wicket.protocol.http.WebApplication.  In 
+    addition: 
+	</para>
+			<itemizedlist>
+     <listitem> if you override newRequestCycleProcessor to return your own IRequestCycleProcessor subclass, you must instead override 
+ 			getWebRequestCycleProcessorClass() and return the class of your processor, and your processor must extend SeamWebRequestCycleProcessor</listitem>
+		 <listitem> if you override newRequestCycle to return your own RequestCycle subclass, you must make that subclass extend SeamRequestCycle.</listitem>
+			</itemizedlist>
+	<para>
+    If you can't extend SeamApplication, for example if you use an alternate Application superclass for which you do not control the source, 
+		you can duplicate the three steps SeamApplication takes, i.e. return a SeamWebRequestCycleProcessor NonContextual instance in 
+		newRequestCycleProcessor, return a SeamRequestCycle instance in newRequestCycle, and add a SeamComponentInstantiationListener 
+		with addComponentInstantiationListener.
+	</para>
+</chapter>
