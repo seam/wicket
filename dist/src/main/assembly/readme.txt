@@ -1,6 +1,6 @@
 
  Seam Wicket Module
- 3.0.0.CR1
+ 3.0.0.Beta1
 
  What is it?
  ===========
@@ -46,3 +46,4 @@
  Release Notes
  =============
 
+ - Initial release as Seam 3 module

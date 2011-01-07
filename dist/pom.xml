@@ -54,9 +54,9 @@
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
-         <artifactId>seam-wicket-examples-numberguess</artifactId>
+         <artifactId>seam-wicket-example-numberguess</artifactId>
          <version>${project.version}</version>
-         <type>zip</type>
+         <type>war</type>
          <optional>true</optional>
       </dependency>
 

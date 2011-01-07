@@ -18,7 +18,7 @@
 	</tip>
   <para>
     You must also bootstrap Weld according to your environment.  As Wicket is normally used in a servlet (non-JavaEE) environment,
-		this is most easily accomplished using the weld servlet integration, described in the <ulink url="http://docs.jboss.org/weld/reference/latest/en-US/html/environments.html">Weld Reference</ulink>.
+		this is most easily accomplished using the Weld Servlet integration, described in the <ulink url="http://docs.jboss.org/weld/reference/latest/en-US/html/environments.html">Weld Reference Guide</ulink>.
 	</para>
 	<para>
 		You must extend org.jboss.seam.wicket.SeamApplication rather than org.apache.wicket.protocol.http.WebApplication.  In 
