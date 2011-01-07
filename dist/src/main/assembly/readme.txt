@@ -1,6 +1,6 @@
 
-                              Seam Wicket Module
-                               3.0.0 SNAPSHOT
+ Seam Wicket Module
+ 3.0.0.CR1
 
  What is it?
  ===========
@@ -11,15 +11,21 @@
  Contents of distribution
  ========================
 
+ artifacts/
+ 
+    Provided libraries
+
+ lib/
+
+    Dependencies
+
  docs/
 
     API Docs and reference guide.
-  
+
  examples/
 
     Seam Wicket examples
-  
- ...
   
  Licensing
  =========
@@ -30,11 +36,13 @@
  Seam Wicket URLs
  ===============
 
- Seam 3 Wicket Module:  http://www.sfwk.org/Seam3/WicketModule
- Seam 3 Home Page:     http://www.sfwk.org/Seam3
- Downloads:            http://www.sfwk.org/Seam3/DistributionDownloads
- Forums:               http://www.sfwk.org/Community/Seam3Users
- Source Code:          git://github.com/seam/wicket.git
- Issue Tracking:       http://jira.jboss.org/jira/browse/SEAMWICKET
+ Seam 3 Wicket Module: http://sfwk.org/Seam3/Wicket
+ Seam 3 Home Page:     http://sfwk.org/Seam3
+ Downloads:            http://sfwk.org/Seam3/DistributionDownloads
+ Forums:               http://sfwk.org/Community/Seam3Users
+ Source Code:          http://github.com/seam/wicket
+ Issue Tracking:       http://issues.jboss.org/browse/SEAMWICKET
 
- 
+ Release Notes
+ =============
+

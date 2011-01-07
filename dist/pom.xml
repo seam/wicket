@@ -11,9 +11,10 @@
    </parent>
 
    <artifactId>seam-wicket-distribution</artifactId>
+   <packaging>pom</packaging>
+
    <name>Seam Wicket Distribution</name>
    <description>Builds a Seam Wicket release distribution</description>
-   <packaging>pom</packaging>
 
    <properties>
       <maven.deploy.skip>true</maven.deploy.skip>
@@ -42,7 +43,6 @@
          <classifier>javadoc</classifier>
          <optional>true</optional>
       </dependency>
-
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>

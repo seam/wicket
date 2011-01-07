@@ -10,13 +10,11 @@
 		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
-	<groupId>org.jboss.seam.wicket</groupId>
-	<artifactId>seam-wicket-examples-numberguess</artifactId>
-	<version>3.0.0-SNAPSHOT</version>
+	<artifactId>seam-wicket-example-numberguess</artifactId>
 	<packaging>war</packaging>
 	<name>Seam Wicket Numberguess example</name>
-
-	<url>http://seamframework.org</url>
+   <!-- url required for JAR Manifest -->
+   <url>${project.parent.url}</url>
 
 	<dependencies>
       
@@ -29,27 +27,26 @@
       
 		<!-- these next two are because otherwise weld won't bootstrap in jetty -->
 		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>el-api</artifactId>
+			<groupId>org.jboss.spec.javax.el</groupId>
+			<artifactId>jboss-el-api_2.2_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss.weld</groupId>
-			<artifactId>weld-extensions</artifactId>
+			<groupId>org.jboss.seam.solder</groupId>
+			<artifactId>seam-solder</artifactId>
 			<scope>runtime</scope>
-			<version>1.0.0.Beta1</version>
 		</dependency>
 
 	</dependencies>
 
 	<build>
+      <finalName>${project.artifactId}</finalName>
 		<!-- Override the resource filtering to support storing html alongside  classes -->
 		<resources>
 			<resource>
@@ -86,6 +83,7 @@
 				<artifactId>maven-jetty-plugin</artifactId>
 				<configuration>
 					<overrideWebXml>src/main/webapp/WEB-INF/jetty-additions-to-web.xml</overrideWebXml>
+               <jettyEnvXml>src/main/webapp/WEB-INF/jetty-env.xml</jettyEnvXml>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -140,8 +138,8 @@
 				</dependency>
       
 				<dependency>
-					<groupId>javax.annotation</groupId>
-					<artifactId>jsr250-api</artifactId>
+					<groupId>org.jboss.spec.javax.annotation</groupId>
+					<artifactId>jboss-annotations-api_1.1_spec</artifactId>
 					<scope>provided</scope>
 				</dependency>
       
@@ -176,8 +174,9 @@
 				</dependency>
 
 				<dependency>
-					<groupId>javax.annotation</groupId>
-					<artifactId>jsr250-api</artifactId>
+					<groupId>org.jboss.spec.javax.annotation</groupId>
+					<artifactId>jboss-annotations-api_1.1_spec</artifactId>
+					<scope>provided</scope>
 				</dependency>
 
 				<dependency>
@@ -221,6 +220,5 @@
 			</build>
 		</profile>
 	</profiles>
-
 
 </project>

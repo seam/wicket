@@ -4,7 +4,7 @@
    <parent>
       <groupId>org.jboss.seam</groupId>
       <artifactId>seam-parent</artifactId>
-      <version>5-SNAPSHOT</version>
+      <version>5</version>
    </parent>
    <modelVersion>4.0.0</modelVersion>
    <artifactId>seam-wicket-parent</artifactId>
@@ -23,7 +23,7 @@
       </developer>
    </developers>
    
-   <url>http://www.seamframework.org</url>
+   <url>http://seamframework.org/Seam3/Wicket</url>
 
    <modules>
       <module>api</module>
@@ -42,10 +42,8 @@
       <url>https://jira.jboss.org/browse/SEAMWICKET</url>
    </issueManagement>
 
-
-
    <properties>
-      <seam.version>3.0.0.b03</seam.version>
+      <seam.version>3.0.0.b04</seam.version>
       <weld.api.version>1.1.Beta2</weld.api.version>
       <weld.version>1.1.0.Beta2</weld.version>
       <wicket.version>1.4.10</wicket.version>
@@ -60,19 +58,6 @@
             <version>${seam.version}</version>
             <scope>import</scope>
             <type>pom</type>
-         </dependency>
-
-         <!-- Override submodule versions from org.jboss.seam:seam -->
-         <dependency>
-            <groupId>org.jboss.seam.servlet</groupId>
-            <artifactId>seam-servlet</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-
-         <dependency>
-            <groupId>org.jboss.seam.servlet</groupId>
-            <artifactId>seam-servlet-api</artifactId>
-            <version>${project.version}</version>
          </dependency>
 
          <dependency>
@@ -152,6 +137,5 @@
       <developerConnection>scm:git:git@github.com:seam/wicket.git</developerConnection>
       <url>http://github.com/seam/wicket</url>
    </scm>
-
 
 </project>

@@ -10,7 +10,7 @@ import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.request.IRequestCycleProcessor;
 import org.jboss.seam.wicket.util.NonContextual;
-import org.jboss.weld.extensions.beanManager.BeanManagerAccessor;
+import org.jboss.seam.solder.beanManager.BeanManagerLocator;
 
 /**
  * A convenience subclass of wicket's WebApplication which adds the hooks
@@ -51,7 +51,7 @@ public abstract class SeamApplication extends WebApplication
    protected void internalInit() 
    {
       super.internalInit();
-      BeanManager manager =  BeanManagerAccessor.getBeanManager();
+      BeanManager manager = new BeanManagerLocator().getBeanManager();
       this.seamComponentInstantiationListener = NonContextual.of(SeamComponentInstantiationListener.class,manager);
       this.seamWebRequestCycleProcessor = NonContextual.of(getWebRequestCycleProcessorClass(),manager);
       addComponentInstantiationListener(seamComponentInstantiationListener.newInstance().produce().inject().get());
