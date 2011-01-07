@@ -1,9 +1,16 @@
 package org.jboss.weld.examples.wicket;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.mortbay.jetty.Connector;
 import org.mortbay.jetty.Server;
 import org.mortbay.jetty.bio.SocketConnector;
+import org.mortbay.jetty.plus.webapp.EnvConfiguration;
 import org.mortbay.jetty.webapp.WebAppContext;
+import org.mortbay.resource.Resource;
+import org.mortbay.xml.XmlConfiguration;
 
 public class Start
 {
@@ -11,7 +18,7 @@ public class Start
    {
       Server server = new Server();
       SocketConnector connector = new SocketConnector();
-      connector.setPort(8080);
+      connector.setPort(9090);
       server.setConnectors(new Connector[] { connector });
 
       WebAppContext bb = new WebAppContext();
@@ -19,6 +26,15 @@ public class Start
       bb.setContextPath("/");
       bb.setWar("src/main/webapp");
       bb.setOverrideDescriptor("src/main/webapp/WEB-INF/jetty-additions-to-web.xml");
+      
+      List<String> configurationClasses = new ArrayList<String>();
+      configurationClasses.add(EnvConfiguration.class.getName());
+      configurationClasses.addAll(Arrays.asList(bb.getConfigurationClasses()));
+      bb.setConfigurationClasses(configurationClasses.toArray(new String[0]));
+      
+      Resource jettyEnvXml = Resource.newResource("src/main/webapp/WEB-INF/jetty-env.xml");
+      XmlConfiguration config = new XmlConfiguration(jettyEnvXml.getURL());
+      config.configure(bb);
       
       server.addHandler(bb);
 

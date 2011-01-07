@@ -39,7 +39,7 @@
 
 		<dependency>
 			<groupId>org.jboss.seam.solder</groupId>
-			<artifactId>seam-solder</artifactId>
+			<artifactId>seam-solder-impl</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -189,9 +189,23 @@
 
 				<dependency>
 					<groupId>org.mortbay.jetty</groupId>
-					<artifactId>jsp-2.1</artifactId>
+					<artifactId>jsp-2.1-jetty</artifactId>
 					<scope>test</scope>
-					<version>6.1.14</version>
+					<version>6.1.21</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>jetty-naming</artifactId>
+					<scope>test</scope>
+					<version>6.1.21</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>jetty-plus</artifactId>
+					<scope>test</scope>
+					<version>6.1.21</version>
 				</dependency>
 
 				<dependency>
