@@ -7,7 +7,7 @@
    <modelVersion>4.0.0</modelVersion>
    <artifactId>seam-wicket-parent</artifactId>
    <groupId>org.jboss.seam.wicket</groupId>
-   <version>3.0.0.Beta1</version>
+   <version>3.0.0-SNAPSHOT</version>
    <name>Seam Wicket Module</name>
    <packaging>pom</packaging>
    <description>The parent for the Seam Wicket Module</description>
