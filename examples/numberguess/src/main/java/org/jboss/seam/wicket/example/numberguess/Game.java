@@ -1,4 +1,4 @@
-package org.jboss.weld.examples.wicket;
+package org.jboss.seam.wicket.example.numberguess;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package org.jboss.weld.examples.wicket;
+package org.jboss.seam.wicket.example.numberguess;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

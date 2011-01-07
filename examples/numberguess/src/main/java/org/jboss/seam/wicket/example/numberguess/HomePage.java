@@ -1,4 +1,4 @@
-package org.jboss.weld.examples.wicket;
+package org.jboss.seam.wicket.example.numberguess;
 
 import java.io.Serializable;
 
@@ -17,22 +17,23 @@ import org.apache.wicket.model.Model;
 
 public class HomePage extends WebPage
 {
-   private static final long serialVersionUID = 1L;
-
-   @Inject Game game;
-   @Inject Conversation conversation;
+   @Inject
+   private Game game;
+   
+   @Inject
+   private Conversation conversation;
 
    public HomePage()
    {
       conversation.begin();
-      Form form = new Form("NumberGuessMain");
+      Form<String> form = new Form<String>("NumberGuessMain");
       add(form);
       form.add(new FeedbackPanel("messages").setOutputMarkupId(true));
       
-      final Component prompt = new Label("prompt", new Model()
+      final Component prompt = new Label("prompt", new Model<String>()
       {
          @Override
-         public Serializable getObject()
+         public String getObject()
          {
             return "I'm thinking of a number between " + game.getSmallest() + " and " + game.getBiggest() + 
                ".  You have " + game.getRemainingGuesses() + " guesses.";
@@ -43,22 +44,25 @@ public class HomePage extends WebPage
       
       final Component guessLabel = new Label("guessLabel","Your Guess:");
       form.add(guessLabel);
-      final Component inputGuess = new TextField("inputGuess",new Model()
+      final Component inputGuess = new TextField<Serializable>("inputGuess", new Model<Serializable>()
       {
+         @Override
          public Serializable getObject()
          {
             return game.getGuess();
          }
-         public void setObject(Object object)
+
+         @Override
+         public void setObject(Serializable object)
          {
-            game.setGuess(Integer.parseInt((String)object));
+            game.setGuess(Integer.parseInt(object.toString()));
          }
       });
       form.add(inputGuess);
       
       final Component guessButton = new AjaxButton("GuessButton")
       {
-         protected void onSubmit(AjaxRequestTarget target, Form form)
+         protected void onSubmit(AjaxRequestTarget target, Form<?> form)
          {
             if (game.check())
             {
@@ -90,7 +94,7 @@ public class HomePage extends WebPage
       
       form.add(new AjaxButton("RestartButton")
       {
-         protected void onSubmit(AjaxRequestTarget target, Form form)
+         protected void onSubmit(AjaxRequestTarget target, Form<?> form)
          {
             game.reset();
             guessButton.setVisible(true);

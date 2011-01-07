@@ -16,6 +16,11 @@
    <!-- url required for JAR Manifest -->
    <url>${project.parent.url}</url>
 
+   <properties>
+      <jboss.home>${env.JBOSS_HOME}</jboss.home>
+      <jboss.domain>default</jboss.domain>
+   </properties>
+
 	<dependencies>
       
 		<dependency>
@@ -131,6 +136,7 @@
 					<scope>provided</scope>
 				</dependency>
 
+            <!-- ??? -->
 				<dependency>
 					<groupId>javax.portlet</groupId>
 					<artifactId>portlet-api</artifactId>
@@ -144,6 +150,21 @@
 				</dependency>
       
 			</dependencies>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>jboss-maven-plugin</artifactId>
+                  <configuration>
+                     <jbossHome>${jboss.home}</jbossHome>
+                     <serverName>${jboss.domain}</serverName>
+                     <fileNames>
+                        <fileName>${project.build.directory}/${project.build.finalName}.war</fileName>
+                     </fileNames>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
 		</profile>      
 		<profile>
 			<id>jetty</id>
@@ -221,7 +242,7 @@
 			<id>distribution</id>
 			<activation>
 				<property>
-					<name>dist</name>
+					<name>release</name>
 				</property>
 			</activation>
 			<build>
