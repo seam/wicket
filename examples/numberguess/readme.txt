@@ -3,7 +3,7 @@ using Jetty.
 
 To generate an standard eclipse project, run 
 
-	mvn -Pjetty eclipse:eclipse
+  mvn -Pjetty eclipse:eclipse
 
 If you have m2eclipse installed, then import the project as an existing Maven
 project, then select Project > Properties > Maven and enter "jetty" in the
@@ -18,6 +18,9 @@ To run the application on JBoss AS 6:
 
 1. ensure that the JBOSS_HOME environment variable resolves to the JBoss AS 6 installation directory
 2. Start JBoss AS 6
-3. Execute the following Maven commands: mvn package jboss:hard-deploy
+3. From the commandline, run:
+
+  mvn package jboss:hard-deploy
+
 4. Visit http://localhost:8080/seam-wicket-example-numberguess in your browser
 5. Start guessing!

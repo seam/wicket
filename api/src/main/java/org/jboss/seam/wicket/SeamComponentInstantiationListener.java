@@ -16,17 +16,17 @@ import org.jboss.seam.wicket.util.NonContextual;
 public class SeamComponentInstantiationListener implements IComponentInstantiationListener
 {
    
-	@Inject
-	private BeanManager manager;
-	
+   @Inject
+   private BeanManager manager;
+   
    public void onInstantiation(Component component)
    {
       /*
        * The manager could be null in unit testing environments
        */
-		if (manager != null) {
-			NonContextual.of(component.getClass(), manager)
-					.existingInstance(component).inject();
-		}
+      if (manager != null) {
+         NonContextual.of(component.getClass(), manager)
+               .existingInstance(component).inject();
+      }
    }
 }

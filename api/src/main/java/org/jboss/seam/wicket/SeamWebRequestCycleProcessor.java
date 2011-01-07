@@ -14,8 +14,6 @@ import org.apache.wicket.protocol.http.WebRequestCycleProcessor;
  * 
  * @author cpopetz
  * @author ivaynberg
-
- * 
  */
 public class SeamWebRequestCycleProcessor extends WebRequestCycleProcessor
 {

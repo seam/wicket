@@ -60,7 +60,7 @@ public abstract class SeamApplication extends WebApplication
    protected Class<? extends SeamWebRequestCycleProcessor> 
    getWebRequestCycleProcessorClass() 
    { 
-	   return SeamWebRequestCycleProcessor.class;
+      return SeamWebRequestCycleProcessor.class;
    }
 
    /**
