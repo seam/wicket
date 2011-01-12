@@ -56,11 +56,13 @@ public class NonContextual<T>
       this.injectionTarget = manager.createInjectionTarget(type);
    }
 
+   @SuppressWarnings("unchecked")
    public Instance<T> newInstance()
    {
       return new Instance<T>(beanManager, (InjectionTarget<T>) injectionTarget);
    }
 
+   @SuppressWarnings("unchecked")
    public Instance<T> existingInstance(T instance)
    {
       return new Instance<T>(beanManager, (InjectionTarget<T>) injectionTarget, instance);

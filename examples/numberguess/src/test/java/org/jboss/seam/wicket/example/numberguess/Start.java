@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.mortbay.jetty.Connector;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.bio.SocketConnector;
-import org.mortbay.jetty.webapp.WebAppContext;
-import org.mortbay.resource.Resource;
-import org.mortbay.xml.XmlConfiguration;
+//import org.mortbay.jetty.Connector;
+//import org.mortbay.jetty.Server;
+//import org.mortbay.jetty.bio.SocketConnector;
+//import org.mortbay.jetty.webapp.WebAppContext;
+//import org.mortbay.resource.Resource;
+//import org.mortbay.xml.XmlConfiguration;
 
 public class Start
 {
+   /*
    public static void main(String[] args) throws Exception
    {
       Server server = new Server();
@@ -54,4 +55,5 @@ public class Start
          System.exit(100);
       }
    }
+   */
 }

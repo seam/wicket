@@ -32,6 +32,8 @@ public class HomePage extends WebPage
       
       final Component prompt = new Label("prompt", new Model<String>()
       {
+         private static final long serialVersionUID = 1L;
+
          @Override
          public String getObject()
          {
@@ -46,6 +48,8 @@ public class HomePage extends WebPage
       form.add(guessLabel);
       final Component inputGuess = new TextField<Serializable>("inputGuess", new Model<Serializable>()
       {
+         private static final long serialVersionUID = 1L;
+
          @Override
          public Serializable getObject()
          {
@@ -62,6 +66,8 @@ public class HomePage extends WebPage
       
       final Component guessButton = new AjaxButton("GuessButton")
       {
+         private static final long serialVersionUID = 1L;
+
          protected void onSubmit(AjaxRequestTarget target, Form<?> form)
          {
             if (game.check())
@@ -94,6 +100,8 @@ public class HomePage extends WebPage
       
       form.add(new AjaxButton("RestartButton")
       {
+         private static final long serialVersionUID = 1L;
+
          protected void onSubmit(AjaxRequestTarget target, Form<?> form)
          {
             game.reset();

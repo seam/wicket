@@ -11,6 +11,8 @@ import javax.naming.NamingException;
 @SessionScoped
 public class Game implements Serializable
 {
+   private static final long serialVersionUID = 1L;
+   
    private int number;
    private int guess;
    private int smallest;

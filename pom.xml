@@ -1,134 +1,306 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <parent>
-      <groupId>org.jboss.seam</groupId>
-      <artifactId>seam-parent</artifactId>
-      <version>6</version>
-   </parent>
-   <modelVersion>4.0.0</modelVersion>
-   <artifactId>seam-wicket-parent</artifactId>
-   <groupId>org.jboss.seam.wicket</groupId>
-   <version>3.0.0-SNAPSHOT</version>
-   <name>Seam Wicket Module</name>
-   <packaging>pom</packaging>
-   <description>The parent for the Seam Wicket Module</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-   <developers>
-      <developer>
-         <name>Clint Popetz</name>
-         <roles>
-            <role>Module lead</role>
-         </roles>
-      </developer>
-   </developers>
-   
-   <url>http://seamframework.org/Seam3/Wicket</url>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.jboss.seam</groupId>
+		<artifactId>seam-parent</artifactId>
+		<version>6</version>
+	</parent>
+	<groupId>org.jboss.seam.wicket</groupId>
+	<artifactId>seam-wicket-parent</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Seam Wicket Module</name>
+	<description>The parent for the Seam Wicket Module</description>
+	
+	<url>http://seamframework.org/Seam3/Wicket</url>
 
-   <modules>
-      <module>api</module>
-   </modules>
-   
-   <licenses>
-      <license>
-         <name>Apache License, Version 2.0</name>
-         <distribution>repo</distribution>
-         <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-      </license>
-   </licenses>
+	<developers>
+		<developer>
+			<name>Clint Popetz</name>
+			<roles>
+				<role>Module lead</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Ove Ranheim</name>
+			<roles>
+				<role>Module contributor</role>
+			</roles>
+		</developer>
+	</developers>
 
-   <issueManagement>
-      <system>JIRA</system>
-      <url>https://jira.jboss.org/browse/SEAMWICKET</url>
-   </issueManagement>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<distribution>repo</distribution>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+		</license>
+	</licenses>
 
-   <properties>
-      <seam.version>3.0.0.b05</seam.version>
-   </properties>
+	<modules>
+		<module>api</module>
+		<module>mock</module>
+		<!-- 
+		<module>examples/numberguess</module>
+		-->
+	</modules>
 
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>org.jboss.seam</groupId>
-            <artifactId>seam-bom</artifactId>
-            <version>${seam.version}</version>
-            <scope>import</scope>
-            <type>pom</type>
-         </dependency>
+	<properties>
+		<seam.version>3.0.0.b05</seam.version>
+		<seam-solder.version>3.0.0-SNAPSHOT</seam-solder.version>
+		<weld-core.version>1.1.0.CR4</weld-core.version>
+		<weld.api.version>1.1.Beta2</weld.api.version>
+		<weld.servlet.version>1.1.0.CR4</weld.servlet.version>
+		<seam.wicket.version>3.0.0.Beta1</seam.wicket.version>
+		<wicket.version>1.4.14</wicket.version>
+		<wicket-extensions.version>1.4.9</wicket-extensions.version>
+		<slf4j.version>1.5.10</slf4j.version>
+		<jboss-logging.version>3.0.0.Beta4</jboss-logging.version>
+		<jetty-mortbay.version>6.1.26</jetty-mortbay.version>
+		<jetty-eclipse.version>8.0.0.M1</jetty-eclipse.version>
+		<jboss-javaee6-spec.version>1.0.0.CR1</jboss-javaee6-spec.version>
+		<servlet.jsp.version>2.2</servlet.jsp.version>
+		<cdi.version>1.0-SP3</cdi.version>
+		<jsr250.version>1.0</jsr250.version>
+		<el-api.version>2.2</el-api.version>
+		<jsr303.version>1.0.0.GA</jsr303.version>
+		<arquillian.version>1.0.0.Alpha4.SP1</arquillian.version><!-- <version>1.0.0.Alpha4.SP5</version> -->
+	</properties>
 
-         <dependency>
-            <groupId>org.jboss.seam.wicket</groupId>
-            <artifactId>seam-wicket-api</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.seam</groupId>
+				<artifactId>seam-bom</artifactId>
+				<version>${seam.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 
-   <dependencies>
-      <dependency>
-         <groupId>org.slf4j</groupId>
-         <artifactId>slf4j-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-   </dependencies>
+			<dependency>
+				<groupId>org.jboss.seam.solder</groupId>
+				<artifactId>seam-solder</artifactId>
+				<version>${seam-solder.version}</version>
+				<scope>compile</scope>
+			</dependency>
 
-   <profiles>
-      <profile>
-         <id>distribution</id>
-         <activation>
-            <property>
-               <name>release</name>
-            </property>
-         </activation>
-         <modules>
-            <module>dist</module>
-            <module>docs/reference</module>
-            <module>examples/numberguess</module>
-         </modules>
-      </profile>
-      <profile>
-         <id>jboss-public-repository</id>
-         <activation>
-            <property>
-               <name>jboss-public-repository</name>
-               <value>!false</value>
-            </property>
-         </activation>
-         <repositories>
-            <repository>
-               <id>jboss-public-repository-group</id>
-               <name>JBoss Public Maven Repository Group</name>
-               <url>http://repository.jboss.org/nexus/content/groups/public</url>
-               <releases>
-                  <enabled>true</enabled>
-                  <updatePolicy>never</updatePolicy>
-               </releases>
-               <snapshots>
-                  <enabled>true</enabled>
-                  <updatePolicy>never</updatePolicy>
-               </snapshots>
-            </repository>
-         </repositories>
-         <pluginRepositories>
-            <pluginRepository>
-               <id>jboss-public-repository-group</id>
-               <name>JBoss Public Maven Repository Group</name>
-               <url>http://repository.jboss.org/nexus/content/groups/public</url>
-               <releases>
-                  <enabled>true</enabled>
-                  <updatePolicy>never</updatePolicy>
-               </releases>
-               <snapshots>
-                  <enabled>false</enabled>
-                  <updatePolicy>never</updatePolicy>
-               </snapshots>
-            </pluginRepository>
-         </pluginRepositories>
-      </profile>
-   </profiles>
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging</artifactId>
+				<scope>compile</scope>
+				<version>${jboss-logging.version}</version>
+			</dependency>
 
-   <scm>
-      <connection>scm:git:git://github.com/seam/wicket.git</connection>
-      <developerConnection>scm:git:git@github.com:seam/wicket.git</developerConnection>
-      <url>http://github.com/seam/wicket</url>
-   </scm>
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-6.0</artifactId>
+				<version>${jboss-javaee6-spec.version}</version>
+				<type>pom</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.seam.wicket</groupId>
+				<artifactId>seam-wicket-api</artifactId>
+				<version>${project.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.enterprise</groupId>
+				<artifactId>cdi-api</artifactId>
+				<scope>compile</scope>
+				<version>${cdi.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.jboss.interceptor</groupId>
+						<artifactId>jboss-interceptor-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket</artifactId>
+				<version>${wicket.version}</version>
+				<scope>compile</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-extensions</artifactId>
+				<version>${wicket-extensions.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>		
+
+			<dependency>
+				<groupId>org.jboss.weld</groupId>
+				<artifactId>weld-api</artifactId>
+				<version>${weld.api.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.weld</groupId>
+				<artifactId>weld-core</artifactId>
+				<version>${weld-core.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.weld.servlet</groupId>
+				<artifactId>weld-servlet</artifactId>
+				<scope>runtime</scope>
+				<version>${weld.servlet.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>${jsr303.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>jsr250-api</artifactId>
+				<scope>compile</scope>
+				<version>${jsr250.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>el-api</artifactId>
+				<scope>provided</scope>
+				<version>${el-api.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${servlet.jsp.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-junit</artifactId>
+				<version>${arquillian.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian.container</groupId>
+				<artifactId>arquillian-jetty-embedded-7</artifactId>
+				<version>${arquillian.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>${jetty-eclipse.version}</version>
+				<scope>test</scope>
+			</dependency>
+	
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-plus</artifactId>
+				<version>${jetty-eclipse.version}</version>
+				<scope>test</scope>
+			</dependency>	
+		</dependencies>
+	</dependencyManagement>
+
+	<profiles>
+		<profile>
+			<id>distribution</id>
+			<activation>
+				<property>
+					<name>release</name>
+				</property>
+			</activation>
+			<modules>
+				<module>dist</module>
+				<module>docs/reference</module>
+				<module>examples/numberguess</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>jboss-public-repository</id>
+			<activation>
+				<property>
+					<name>jboss-public-repository</name>
+					<value>!false</value>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>jboss-public-repository-group</id>
+					<name>JBoss Public Maven Repository Group</name>
+					<url>http://repository.jboss.org/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>jboss-public-repository-group</id>
+					<name>JBoss Public Maven Repository Group</name>
+					<url>http://repository.jboss.org/nexus/content/groups/public</url>
+					<releases>
+						<enabled>true</enabled>
+						<updatePolicy>never</updatePolicy>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+						<updatePolicy>never</updatePolicy>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
+
+	<issueManagement>
+		<system>JIRA</system>
+		<url>https://jira.jboss.org/browse/SEAMWICKET</url>
+	</issueManagement>
+
+	<scm>
+		<connection>scm:git:git://github.com/seam/wicket.git</connection>
+		<developerConnection>scm:git:git@github.com:seam/wicket.git</developerConnection>
+		<url>http://github.com/seam/wicket</url>
+	</scm>
 
 </project>
