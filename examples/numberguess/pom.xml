@@ -42,7 +42,13 @@
 
       <dependency>
          <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder-impl</artifactId>
+         <artifactId>seam-solder-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.seam.solder</groupId>
+         <artifactId>seam-solder</artifactId>
          <scope>runtime</scope>
       </dependency>
 
@@ -144,6 +150,16 @@
                <groupId>org.jboss.spec.javax.annotation</groupId>
                <artifactId>jboss-annotations-api_1.1_spec</artifactId>
                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-api</artifactId>
+            </dependency>
+
+            <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-jdk14</artifactId>
             </dependency>
       
          </dependencies>
