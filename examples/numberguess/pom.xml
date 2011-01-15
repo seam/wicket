@@ -206,7 +206,6 @@
       </profile>
 
       <!-- mvn clean test -Pitest-jbossas-remote -->
-      <!-- FIXME Deployment fails due to: SEAMWICKET-10 -->
       <profile>
          <id>itest-jbossas-remote</id>
          <dependencies>
