@@ -17,9 +17,8 @@
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   
    <modelVersion>4.0.0</modelVersion>
-
+   
    <parent>
       <groupId>org.jboss.seam.wicket</groupId>
       <artifactId>seam-wicket-parent</artifactId>
@@ -27,23 +26,21 @@
       <relativePath>../pom.xml</relativePath>
    </parent>
 
-   <artifactId>seam-wicket-api</artifactId>
+   <artifactId>seam-wicket-mock</artifactId>
    <packaging>jar</packaging>
 
-   <name>Seam Wicket Module API</name>
+   <name>Seam Wicket Mock</name>
    <url>${project.parent.url}</url>
 
    <dependencies>
       <dependency>
+         <groupId>org.jboss.seam.wicket</groupId>
+         <artifactId>seam-wicket-api</artifactId>
+      </dependency>
+
+      <dependency>
          <groupId>org.jboss.seam.solder</groupId>
          <artifactId>seam-solder-api</artifactId>
-      </dependency>
-   
-      <dependency>
-         <groupId>org.jboss.spec</groupId>
-         <artifactId>jboss-javaee-6.0</artifactId>
-         <type>pom</type>
-         <scope>provided</scope>
       </dependency>
 
       <dependency>
@@ -68,6 +65,13 @@
          <artifactId>weld-core</artifactId>
          <scope>provided</scope>
       </dependency>
+
+      <dependency>
+         <groupId>org.jboss.spec.javax.servlet</groupId>
+         <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+         <scope>provided</scope>
+      </dependency>
+
    </dependencies>
 
    <build>

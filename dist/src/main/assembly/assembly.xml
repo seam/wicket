@@ -28,6 +28,7 @@
          <useProjectArtifact>false</useProjectArtifact>
          <includes>
             <include>org.jboss.seam.wicket:seam-wicket-api</include>
+            <include>org.jboss.seam.wicket:seam-wicket-mock</include>
          </includes>
          <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
       </dependencySet>
@@ -56,7 +57,7 @@
          <unpack>true</unpack>
          <useProjectArtifact>false</useProjectArtifact>
          <includes>
-            <include>org.jboss.seam.wicket:seam-wicket-examples-numberguess</include>
+            <include>org.jboss.seam.wicket:seam-wicket-example-numberguess</include>
          </includes>
       </dependencySet>
       <!-- Pull in docbook artifacts -->

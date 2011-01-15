@@ -24,7 +24,7 @@ public class Start
       bb.setServer(server);
       bb.setContextPath("/");
       bb.setWar("src/main/webapp");
-      bb.setOverrideDescriptor("src/main/webapp/WEB-INF/jetty-additions-to-web.xml");
+      bb.setOverrideDescriptor("src/main/webapp/WEB-INF/jetty-web-fragment.xml");
       
       List<String> configurationClasses = new ArrayList<String>();
       configurationClasses.add("org.mortbay.jetty.plus.webapp.EnvConfiguration");

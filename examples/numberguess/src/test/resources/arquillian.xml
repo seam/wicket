@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns="http://jboss.com/arquillian" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:jbossas-remote="urn:arq:org.jboss.arquillian.container.jbossas.remote_6" 
+   xmlns:jetty="urn:arq:org.jboss.arquillian.container.jetty.embedded_7">
+
+   <!-- Uncomment to have test archives exported to the file system for inspection -->
+   <engine>
+      <deploymentExportPath>target/</deploymentExportPath>
+   </engine>
+
+   <jbossas-remote:container>
+      <jbossas-remote:remoteServerHttpPort>8080</jbossas-remote:remoteServerHttpPort>
+   </jbossas-remote:container>
+
+   <jetty:container>
+      <jetty:bindHttpPort>9090</jetty:bindHttpPort>
+   </jetty:container>
+
+</arquillian>
