@@ -30,8 +30,8 @@
    <packaging>pom</packaging>
    <version>3.0.0-SNAPSHOT</version>
 
-   <name>Seam Wicket Module</name>
-   <description>The parent for the Seam Wicket Module</description>
+   <name>Seam for Apache Wicket Module</name>
+   <description>The parent for the Seam for Apache Wicket Module</description>
    <url>http://seamframework.org/Seam3/Wicket</url>
 
    <licenses>

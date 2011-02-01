@@ -3,7 +3,7 @@
    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
 
 <bookinfo>
-   <title>Seam Wicket Module</title>
+   <title>Seam for Apache Wicket Module</title>
    <subtitle>Reference Guide</subtitle>
    <releaseinfo>3.0.0-SNAPSHOT</releaseinfo>
 

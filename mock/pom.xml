@@ -29,7 +29,7 @@
    <artifactId>seam-wicket-mock</artifactId>
    <packaging>jar</packaging>
 
-   <name>Seam Wicket Mock</name>
+   <name>Seam for Apache Wicket Mock</name>
    <url>${project.parent.url}</url>
 
    <dependencies>

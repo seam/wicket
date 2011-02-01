@@ -12,7 +12,7 @@
    <artifactId>seam-wicket-reference-guide</artifactId>
    <packaging>jdocbook</packaging>
 
-   <name>Seam Wicket Module Reference Guide</name>
+   <name>Seam for Apache Wicket Module Reference Guide</name>
 
    <properties>
       <pdf.name>${project.artifactId}.pdf</pdf.name>

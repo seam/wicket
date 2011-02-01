@@ -30,7 +30,7 @@
 
    <artifactId>seam-wicket-example-numberguess</artifactId>
    <packaging>war</packaging>
-   <name>Seam Wicket Numberguess example</name>
+   <name>Seam for Apache Wicket Numberguess example</name>
    <!-- url required for JAR Manifest -->
    <url>${project.parent.url}</url>
 

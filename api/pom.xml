@@ -30,7 +30,7 @@
    <artifactId>seam-wicket-api</artifactId>
    <packaging>jar</packaging>
 
-   <name>Seam Wicket Module API</name>
+   <name>Seam for Apache Wicket Module API</name>
    <url>${project.parent.url}</url>
 
    <dependencies>

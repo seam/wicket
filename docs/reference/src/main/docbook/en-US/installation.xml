@@ -14,7 +14,7 @@
    <version>${seam-wicket-version}</version>
 </dependency>]]></programlisting>   
    <tip>
-      <para>Replace ${seam-wicket-version} with the most recent or appropriate version of Seam Wicket.</para>         
+      <para>Replace ${seam-wicket-version} with the most recent or appropriate version of Seam for Apache Wicket.</para>         
    </tip>
   <para>
     You must also bootstrap Weld according to your environment.  As Wicket is normally used in a servlet (non-JavaEE) environment,

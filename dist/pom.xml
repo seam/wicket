@@ -12,8 +12,8 @@
    <artifactId>seam-wicket-distribution</artifactId>
    <packaging>pom</packaging>
 
-   <name>Seam Wicket Distribution</name>
-   <description>Builds a Seam Wicket release distribution</description>
+   <name>Seam for Apache Wicket Distribution</name>
+   <description>Builds a Seam for Apache Wicket release distribution</description>
 
    <properties>
       <maven.deploy.skip>true</maven.deploy.skip>

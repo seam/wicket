@@ -4,7 +4,7 @@
 <preface>
    <title>Introduction</title>
    <para>
-   The goal of Seam Wicket is to provide a fully integrated CDI programming model to the Apache Wicket web framework.
+   The goal of Seam for Apache Wicket is to provide a fully integrated CDI programming model to the Apache Wicket web framework.
    Although Apache components (pages, panels, buttons, etc.) are created by direct construction using "new", and therefore are 
    not themselves CDI contextual instances, with seam-wicket they can receive injections of scoped contextual instances
    via @Inject.  In addition, conversation propagation is supported to allow a conversation scope to be tied to a wicket
