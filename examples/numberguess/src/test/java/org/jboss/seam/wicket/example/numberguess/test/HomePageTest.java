@@ -40,8 +40,8 @@ public class HomePageTest
          .addWebResource("test-jetty-env.xml", "jetty-env.xml")
          .addWebResource(EmptyAsset.INSTANCE, "beans.xml")
          .addLibraries(
-               MavenArtifactResolver.resolve("org.jboss.seam.solder:seam-solder:3.0.0.Beta1"),
-               MavenArtifactResolver.resolve("org.apache.wicket:wicket:1.4.14"))
+               MavenArtifactResolver.resolve("org.jboss.seam.solder:seam-solder:3.0.0.Beta2"),
+               MavenArtifactResolver.resolve("org.apache.wicket:wicket:1.4.15"))
          .setWebXML("test-web.xml");
    }
    
