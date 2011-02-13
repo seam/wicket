@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
    "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
-<chapter id="components">
+<chapter id="wicket-components">
    <title>Seam for Apache Wicket Features</title>
    <para>
     Seam's integration with Wicket is focused on two tasks: conversation propagation through wicket page metadata and contextual injection of
