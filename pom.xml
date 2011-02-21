@@ -43,12 +43,12 @@
    </licenses>
 
    <modules>
-      <module>api</module>
+      <module>impl</module>
       <module>mock</module>
    </modules>
 
    <properties>
-      <seam.version>3.0.0.b07</seam.version>
+      <seam.version>3.0.0.b09</seam.version>
    </properties>
 
    <dependencyManagement>
@@ -64,7 +64,7 @@
          <!-- Override submodule versions from org.jboss.seam:seam-bom -->
          <dependency>
             <groupId>org.jboss.seam.wicket</groupId>
-            <artifactId>seam-wicket-api</artifactId>
+            <artifactId>seam-wicket</artifactId>
             <version>${project.version}</version>
          </dependency>
 

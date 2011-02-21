@@ -26,12 +26,19 @@
       <dependencySet>
          <outputDirectory>artifacts</outputDirectory>
          <useProjectArtifact>false</useProjectArtifact>
+         <!-- scope set to 'test' because seam-wicket-mock is test-scoped and the assembly won't include it otherwise -->
+         <scope>test</scope> 
          <includes>
-            <include>org.jboss.seam.wicket:seam-wicket-api</include>
+            <include>org.jboss.seam.wicket:seam-wicket</include>
             <include>org.jboss.seam.wicket:seam-wicket-mock</include>
          </includes>
+         <excludes>
+            <exclude>org.jboss.seam.wicket:*:*:javadoc</exclude>
+            <exclude>org.jboss.seam.wicket:*:*:sources</exclude>
+         </excludes>
          <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
       </dependencySet>
+
       <!-- Add necessary dependencies -->
       <dependencySet>
          <outputDirectory>lib</outputDirectory>
@@ -42,16 +49,18 @@
          </excludes>
          <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
       </dependencySet>
+
       <!-- Pull in javadoc for api -->
       <dependencySet>
-         <outputDirectory>doc/apidocs</outputDirectory>
+         <outputDirectory>doc/api</outputDirectory>
          <unpack>true</unpack>
          <useProjectArtifact>false</useProjectArtifact>
          <includes>
-            <include>org.jboss.seam.wicket:seam-wicket-api:jar:javadoc</include>
+            <include>org.jboss.seam.wicket:seam-wicket:jar:javadoc</include>
          </includes>
       </dependencySet>
-      <!-- Pull in the example projects -->
+      
+      <!-- Pull in the numberguess example -->
       <dependencySet>
          <outputDirectory>examples</outputDirectory>
          <unpack>true</unpack>
@@ -60,6 +69,7 @@
             <include>org.jboss.seam.wicket:seam-wicket-example-numberguess</include>
          </includes>
       </dependencySet>
+      
       <!-- Pull in docbook artifacts -->
       <dependencySet>
          <outputDirectory>doc/reference</outputDirectory>

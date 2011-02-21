@@ -19,7 +19,7 @@
 
     Dependencies
 
- docs/
+ doc/
 
     API Docs and reference guide.
 

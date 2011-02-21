@@ -27,10 +27,10 @@
       <relativePath>../pom.xml</relativePath>
    </parent>
 
-   <artifactId>seam-wicket-api</artifactId>
+   <artifactId>seam-wicket</artifactId>
    <packaging>jar</packaging>
 
-   <name>Seam for Apache Wicket Module API</name>
+   <name>Seam for Apache Wicket Module Implementation</name>
    <url>${project.parent.url}</url>
 
    <dependencies>

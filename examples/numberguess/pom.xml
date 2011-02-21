@@ -43,20 +43,14 @@
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
-         <artifactId>seam-wicket-api</artifactId>
+         <artifactId>seam-wicket</artifactId>
          <scope>compile</scope>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.solder</groupId>
-         <artifactId>seam-solder-api</artifactId>
-         <scope>provided</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>org.jboss.seam.solder</groupId>
          <artifactId>seam-solder</artifactId>
-         <scope>runtime</scope>
+         <scope>compile</scope>
       </dependency>
 
       <dependency>
@@ -141,6 +135,23 @@
    </build>
 
    <profiles>
+      <profile>
+         <id>distribution</id>
+         <activation>
+            <property>
+               <name>release</name>
+            </property>
+         </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-assembly-plugin</artifactId>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>  
+   
       <profile>
          <id>default</id>
          <activation>

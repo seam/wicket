@@ -22,52 +22,50 @@
    <dependencies>
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
-         <artifactId>seam-wicket-api</artifactId>
-         <optional>true</optional>
+         <artifactId>seam-wicket</artifactId>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
-         <artifactId>seam-wicket-api</artifactId>
-         <version>${project.version}</version>
+         <artifactId>seam-wicket</artifactId>
          <classifier>sources</classifier>
+         <version>${project.version}</version>         
          <optional>true</optional>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
-         <artifactId>seam-wicket-api</artifactId>
-         <version>${project.version}</version>
+         <artifactId>seam-wicket</artifactId>
          <classifier>javadoc</classifier>
+         <version>${project.version}</version>         
          <optional>true</optional>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
          <artifactId>seam-wicket-mock</artifactId>
-         <optional>true</optional>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
          <artifactId>seam-wicket-mock</artifactId>
-         <version>${project.version}</version>
          <classifier>sources</classifier>
+         <version>${project.version}</version>         
          <optional>true</optional>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
          <artifactId>seam-wicket-mock</artifactId>
-         <version>${project.version}</version>
          <classifier>javadoc</classifier>
+         <version>${project.version}</version>         
          <optional>true</optional>
       </dependency>
 
       <dependency>
          <groupId>org.jboss.seam.wicket</groupId>
          <artifactId>seam-wicket-reference-guide</artifactId>
-         <version>${project.version}</version>
+         <version>${project.version}</version>         
          <type>war</type>
          <optional>true</optional>
       </dependency>
@@ -76,7 +74,8 @@
          <groupId>org.jboss.seam.wicket</groupId>
          <artifactId>seam-wicket-example-numberguess</artifactId>
          <version>${project.version}</version>
-         <type>war</type>
+         <type>zip</type>
+         <classifier>distsources</classifier>
          <optional>true</optional>
       </dependency>
 
