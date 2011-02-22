@@ -4,7 +4,7 @@
 <chapter id="wicket.installation">
    <title>Installation</title>
    <para>
-      The <literal>seam-wicket-api.jar</literal> should be placed in the web application library folder. If you are using 
+      The <literal>seam-wicket.jar</literal> should be placed in the web application library folder. If you are using 
       <ulink url="http://maven.apache.org/">Maven</ulink> as your build tool, you can add the
       following dependency to your <literal>pom.xml</literal> file:
    </para>
