@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+   "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" []>
+<chapter id="wicket.installation">
+   <title>Installation</title>
+   <para>
+      The <literal>seam-wicket-api.jar</literal> should be placed in the web application library folder. If you are using 
+      <ulink url="http://maven.apache.org/">Maven</ulink> as your build tool, you can add the
+      following dependency to your <literal>pom.xml</literal> file:
+   </para>
+   <programlisting role="XML"><![CDATA[<dependency>
+   <groupId>org.jboss.seam.wicket</groupId>
+   <artifactId>seam-wicket-api</artifactId>
+   <version>${seam-wicket-version}</version>
+</dependency>]]></programlisting>   
+   <tip>
+      <para>Replace <literal>${seam-wicket-version}</literal> with the most recent or appropriate version of Seam for Apache Wicket.</para>         
+   </tip>
+  <para>
+    As Wicket is normally used in a servlet (non-JavaEE) environment, you most likely will need to bootstrap the CDI container yourself.
+    This is most easily accomplished using the Weld Servlet integration, described in the 
+    <ulink url="http://docs.jboss.org/weld/reference/latest/en-US/html/environments.html">Weld Reference Guide</ulink>.
+   </para>
+   <para>
+      You must extend <literal>org.jboss.seam.wicket.SeamApplication</literal> rather than
+      <literal>org.apache.wicket.protocol.http.WebApplication</literal>.  In addition: 
+   </para>
+
+   <itemizedlist>
+     <listitem>if you override <literal>newRequestCycleProcessor()</literal> to return your own <literal>IRequestCycleProcessor</literal>
+      subclass, you must instead override <literal>getWebRequestCycleProcessorClass()</literal> and return the class of your processor, 
+      and your processor must extend <literal>SeamWebRequestCycleProcessor</literal>.</listitem>
+     <listitem> if you override <literal>newRequestCycle</literal> to return your own <literal>RequestCycle</literal> subclass, you must
+      make that subclass extend <literal>SeamRequestCycle</literal>.</listitem>
+   </itemizedlist>
+
+   <para>
+    If you can't extend <literal>SeamApplication</literal>, for example if you use an alternate <literal>Application</literal> superclass
+    for which you do not control the source, you can duplicate the three steps <literal>SeamApplication</literal> takes, i.e. return a
+    <literal>SeamWebRequestCycleProcessor</literal> NonContextual instance in <literal>newRequestCycleProcessor()</literal>, return a
+    <literal>SeamRequestCycle</literal> instance in <literal>newRequestCycle()</literal>, and add a 
+    <literal>SeamComponentInstantiationListener</literal> with <literal>addComponentInstantiationListener()</literal>.
+   </para>
+</chapter>

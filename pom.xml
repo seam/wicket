@@ -88,7 +88,7 @@
          </activation>
          <modules>
             <module>examples/numberguess</module>
-            <module>docs/reference</module>
+            <module>docs</module>
             <module>dist</module>
          </modules>
       </profile>
