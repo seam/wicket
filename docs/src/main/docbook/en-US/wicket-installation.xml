@@ -10,7 +10,7 @@
    </para>
    <programlisting role="XML"><![CDATA[<dependency>
    <groupId>org.jboss.seam.wicket</groupId>
-   <artifactId>seam-wicket-api</artifactId>
+   <artifactId>seam-wicket</artifactId>
    <version>${seam-wicket-version}</version>
 </dependency>]]></programlisting>   
    <tip>
