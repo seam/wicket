@@ -24,3 +24,25 @@ To run the application on JBoss AS 6:
 
 4. Visit http://localhost:8080/seam-wicket-example-numberguess in your browser
 5. Start guessing!
+
+
+
+Running functional tests from commandline
+==========================================
+
+1.) Build and deploy the numberguess application to an application server
+2.) run "mvn verify -Pftest"
+
+Running functional tests from Eclipse
+==========================================
+You can run the functional tests directly from Eclipse. 
+Firstly,start the selenium server.
+
+java -jar ~/.m2/repository/org/seleniumhq/selenium/server/selenium-server/1.0.3/selenium-server-1.0.3-standalone.jar -port 14444
+
+Then, run the test using Eclipse TestNG plugin.
+It will fail at the first run. Modify the run configuration of the test
+NumberGuessTest -> Run As -> Run Configurations and add the following VM 
+arguments in the arguments tab:
+
+-Dmethod=* -Dbrowser=*firefoxproxy -Dcontext.root=http://localhost:8080/ -Dcontext.path=/seam-wicket-example-numberguess/ -Dselenium.host=localhost -Dselenium.port=14444 -Dselenium.debug=false -Dselenium.maximize=false -Dselenium.timeout.default=30000 -Dselenium.timeout.gui=5000 -Dselenium.timeout.ajax=15000 -Dselenium.timeout.model=30000 -Dselenium.speed=0 -Dselenium.timeout=3000 -Dbasedir=.
