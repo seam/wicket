@@ -1,6 +1,6 @@
 
  Seam for Apache Wicket Module
- 3.0.0.Beta1
+ ${project.version}
 
  What is it?
  ===========
@@ -26,12 +26,16 @@
  examples/
 
     Seam for Apache Wicket examples
+    
+ source/
+ 
+    Source code for this module
   
  Licensing
  =========
 
  This distribution, as a whole, is licensed under the terms of the Apache
- License, Version 2.0 (see apl.txt).
+ License, Version 2.0 (see license.txt).
 
  Seam for Apache Wicket URLs
  ===========================

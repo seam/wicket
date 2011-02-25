@@ -14,9 +14,11 @@
       <fileSet>
          <directory>src/main/assembly</directory>
          <outputDirectory>.</outputDirectory>
+         <filtered>true</filtered>
          <includes>
             <include>readme.txt</include>
-            <include>apl.txt</include>
+            <include>license.txt</include>
+            <include>notice.txt</include>            
          </includes>
       </fileSet>
    </fileSets>
@@ -84,5 +86,20 @@
             </excludes>
          </unpackOptions>
       </dependencySet>
+      
+      <!-- Source code -->
+      <dependencySet>
+         <outputDirectory>source</outputDirectory>
+         <unpack>true</unpack>
+         <useProjectArtifact>false</useProjectArtifact>
+         <includes>
+            <include>org.jboss.seam.wicket:seam-wicket:*:sources</include>
+         </includes>
+         <unpackOptions>
+            <excludes>
+               <exclude>META-INF/</exclude>
+            </excludes>
+         </unpackOptions>
+      </dependencySet>        
    </dependencySets>
 </assembly>
