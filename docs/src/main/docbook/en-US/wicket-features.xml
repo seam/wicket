@@ -37,8 +37,8 @@
    </para>
 
    <para> 
-     The scopes available are similar to those in a JSF application, and are described by the CDI specification.  The container, in a JavaEE
-     environment, or the servlet listeners, in a servlet environment, will set up the application, session, and request scopes.  The
+     The scopes available are similar to those in a JSF application, and are described by the CDI specification.  The container, in a Java EE
+     environment, or the Servlet listeners, in a Servlet environment, will set up the application, session, and request scopes.  The
      conversation scope is set up by the <literal>SeamWebRequestCycle</literal> as outlined in the next two sections.
    </para>
   </section>
@@ -46,7 +46,7 @@
    <section id="conversationControl">
       <title>Conversation Control</title>
       <para>
-         Application conversation control is accomplished as per the CDI specification.  By default, like JSF/CDI, each Wicket HTTP
+         Application conversation control is accomplished as per the CDI specification. By default, like JSF/CDI, each Wicket HTTP
          request (whether AJAX or not) has a <emphasis>transient</emphasis> conversation, which is destroyed at the end of the request.
          A conversation is marked <emphasis>long-running</emphasis> by injecting the 
          <literal>javax.enterprise.context.Conversation</literal> bean and calling its <literal>begin()</literal> method. 
@@ -84,22 +84,22 @@
 
     <para>
      Note that the above process indicates that after a conversation is marked long-running by a page, requests made back to that page
-     (whether AJAX or not) will activate that conversation. It also means that new Pages set as <literal>RequestTarget</literal>s, 
-     if created directly with <literal>setResponsePage(somePageInstance)</literal> or with 
-     <literal>setResponsePage(SomePage.class,pageParameters)</literal>, will have the conversation propagated to them.  This can 
+     (whether AJAX or not) will activate that conversation. It also means that new <literal>Page</literal> objects assigned as a <literal>RequestTarget</literal>, 
+     whether directly via <literal>setResponsePage(somePageInstance)</literal> or with 
+     <literal>setResponsePage(SomePage.class, pageParameters)</literal>, will have the conversation propagated to them. This can 
      be avoided by:
     </para>
     
-    <itemizedlist>
-      <listitem>ending the conversation before the call to setResponsePage</listitem>
+    <orderedlist>
+      <listitem>ending the conversation before the call to setResponsePage,</listitem>
       <listitem>using a BookmarkablePageLink rather than directly instantiating the response page, or</listitem>
       <listitem>specifying an empty <emphasis>cid</emphasis> parameter in <literal>PageParameters</literal> when using <literal>setResponsePage()</literal>.</listitem>
-    </itemizedlist>
+    </orderedlist>
      
     <note>
       <para>
        The final case also provides a mechanism for switching conversations: if a <emphasis>cid</emphasis> is specified in 
-       <literal>PageParameters</literal>, it will be used by bookmarkable pages, rather than the current conversation.)
+       <literal>PageParameters</literal>, it will be used by bookmarkable pages, rather than the current conversation.
       </para>
     </note>
   </section>
