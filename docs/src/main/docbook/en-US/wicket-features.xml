@@ -37,7 +37,7 @@
    </para>
 
    <para> 
-     The scopes available are similar to those in a JSF application, as descibed in the CDI reference.  The container, in an JavaEE
+     The scopes available are similar to those in a JSF application, and are described by the CDI specification.  The container, in a JavaEE
      environment, or the servlet listeners, in a servlet environment, will set up the application, session, and request scopes.  The
      conversation scope is set up by the <literal>SeamWebRequestCycle</literal> as outlined in the next two sections.
    </para>
@@ -83,16 +83,25 @@
      </para>
 
     <para>
-     Note that the above process indicates that after a conversation is marked long-running by a page, requests back to that page
-     (whether ajax or not) will activate that conversation. It also means that new Pages set as <literal>RequestTarget</literal>s, 
+     Note that the above process indicates that after a conversation is marked long-running by a page, requests made back to that page
+     (whether AJAX or not) will activate that conversation. It also means that new Pages set as <literal>RequestTarget</literal>s, 
      if created directly with <literal>setResponsePage(somePageInstance)</literal> or with 
      <literal>setResponsePage(SomePage.class,pageParameters)</literal>, will have the conversation propagated to them.  This can 
-     be avoided by (a) ending the conversation before the call to setResponsePage, (b) using a BookmarkablePageLink rather than 
-     directly instantiating the response page, or (c) specifying an empty <emphasis>cid</emphasis> parameter in 
-     <literal>PageParameters</literal> when using <literal>setResponsePage()</literal>.  (Note that the final case also provides 
-     a mechanism for switching conversations: if a <emphasis>cid</emphasis> is specified in <literal>PageParameters</literal>, it 
-     will be used by bookmarkable pages, rather than the current conversation.)
+     be avoided by:
     </para>
+    
+    <itemizedlist>
+      <listitem>ending the conversation before the call to setResponsePage</listitem>
+      <listitem>using a BookmarkablePageLink rather than directly instantiating the response page, or</listitem>
+      <listitem>specifying an empty <emphasis>cid</emphasis> parameter in <literal>PageParameters</literal> when using <literal>setResponsePage()</literal>.</listitem>
+    </itemizedlist>
+     
+    <note>
+      <para>
+       The final case also provides a mechanism for switching conversations: if a <emphasis>cid</emphasis> is specified in 
+       <literal>PageParameters</literal>, it will be used by bookmarkable pages, rather than the current conversation.)
+      </para>
+    </note>
   </section>
 
 </chapter>
