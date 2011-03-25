@@ -63,13 +63,9 @@
       </dependency>
 
       <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-      </dependency>
-
-      <dependency>
          <groupId>org.jboss.arquillian</groupId>
-         <artifactId>arquillian-junit</artifactId>
+         <artifactId>arquillian-testng</artifactId>
+         <version>1.0.0.Alpha4</version>
       </dependency>
       
       <!-- Test dependencies -->
@@ -217,6 +213,17 @@
             </dependency>
          </dependencies>
          <build>
+            <plugins>
+               <plugin>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                     <skip>false</skip>
+                     <excludes>
+                        <exclude>org/jboss/seam/wicket/example/numberguess/ftest/*.java</exclude>
+                     </excludes>
+                  </configuration>
+               </plugin>
+            </plugins>
             <testResources>
                <testResource>
                   <directory>${project.basedir}/src/main/webapp/WEB-INF</directory>
@@ -252,6 +259,17 @@
             </dependency>
          </dependencies>
          <build>
+            <plugins>
+               <plugin>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                     <skip>false</skip>
+                     <excludes>
+                        <exclude>org/jboss/seam/wicket/example/numberguess/ftest/*.java</exclude>
+                     </excludes>
+                  </configuration>
+               </plugin>
+            </plugins>
             <testResources>
                <testResource>
                   <directory>${project.basedir}/src/main/webapp/WEB-INF</directory>
