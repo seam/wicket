@@ -1,16 +1,25 @@
 package org.jboss.seam.wicket.mock;
 
+import javax.inject.Inject;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.Request;
+import org.apache.wicket.RequestCycle;
+import org.apache.wicket.Response;
 import org.apache.wicket.protocol.http.HttpSessionStore;
 import org.apache.wicket.protocol.http.SecondLevelCacheSessionStore;
-import org.apache.wicket.protocol.http.SecondLevelCacheSessionStore.IPageStore;
+import org.apache.wicket.protocol.http.WebRequest;
+import org.apache.wicket.protocol.http.WebRequestCycle;
 import org.apache.wicket.protocol.http.WebResponse;
+import org.apache.wicket.protocol.http.SecondLevelCacheSessionStore.IPageStore;
 import org.apache.wicket.session.ISessionStore;
 import org.apache.wicket.util.tester.DummyHomePage;
 import org.apache.wicket.util.tester.WicketTester;
 import org.jboss.seam.wicket.SeamApplication;
+import org.jboss.seam.wicket.SeamRequestCycle;
+import org.jboss.weld.context.http.HttpRequestContext;
 
 /**
  * A helper class for testing Seam Pages containing CDI beans. The
@@ -27,12 +36,82 @@ import org.jboss.seam.wicket.SeamApplication;
 public class SeamWicketTester extends WicketTester
 {
 
+   @Inject
+   HttpRequestContext requestContext;
+
+   /*
+    * Override because there is need for manualy restart request context in
+    * wicket tester.
+    * 
+    * @see
+    * org.apache.wicket.protocol.http.MockWebApplication#setupRequestAndResponse
+    * (boolean)
+    */
+   @Override
+   public WebRequestCycle setupRequestAndResponse(boolean isAjax)
+   {
+      if (requestContext.isActive())
+      {
+         endRequest(getServletRequest());
+      }
+      WebRequestCycle webRequestCycle = super.setupRequestAndResponse(isAjax);
+      startRequest(getServletRequest());
+      return webRequestCycle;
+   }
+
+   /*
+    * Start the request, providing a data store which will last the lifetime of
+    * the request
+    */
+
+   public void startRequest(ServletRequest servletRequest)
+   {
+      // Associate the store with the context and acticate the context
+      requestContext.associate(servletRequest);
+      requestContext.activate();
+   }
+
+   /*
+    * End the request, providing the same data store as was used to start the
+    * request
+    */
+   public void endRequest(ServletRequest servletRequest)
+   {
+      try
+      {
+         /*
+          * Invalidate the request (all bean instances will be scheduled for
+          * destruction)
+          */
+         requestContext.invalidate();
+         /*
+          * Deactivate the request, causing all bean instances to be destroyed
+          * (as the context is invalid)
+          */
+         requestContext.deactivate();
+      }
+      finally
+      {
+
+         /*
+          * Ensure that whatever happens we dissociate to prevent any memory
+          * leaks
+          */
+         requestContext.dissociate(servletRequest);
+      }
+   }
+
    /**
     * Default dummy seam web application for testing. Uses
     * {@link HttpSessionStore} to store pages and the <code>Session</code>.
     */
    public static class DummySeamApplication extends SeamApplication
    {
+      // For manually detaching wicket request object and conversation scope
+      private SeamTestRequestCycle seamTestRequestCycle;
+
+      private boolean manuallyDetach = false;
+
       /**
        * @see org.apache.wicket.Application#getHomePage()
        */
@@ -63,6 +142,53 @@ public class SeamWicketTester extends WicketTester
       protected void outputDevelopmentModeWarning()
       {
          // do nothing
+      }
+
+      /**
+       * Override to return Seam-specific request cycle with manually detach
+       * control.
+       * 
+       * @see SeamRequestCycle
+       */
+      @Override
+      public RequestCycle newRequestCycle(final Request request, final Response response)
+      {
+         seamTestRequestCycle = new SeamTestRequestCycle(this, (WebRequest) request, (WebResponse) response, !manuallyDetach);
+         return seamTestRequestCycle;
+      }
+
+      /**
+       * Detach wicket request object and conversation scope. Should be call
+       * after all tests on current page.
+       */
+      public void detach()
+      {
+         if (seamTestRequestCycle != null)
+         {
+            seamTestRequestCycle.superDetach();
+         }
+      }
+
+      /**
+       * Whether wicket request and conversation scope objects should be
+       * manually detach or will be detached immediate after rendering page.
+       * 
+       * @return
+       */
+      public boolean isManuallyDetach()
+      {
+         return !seamTestRequestCycle.isDetach();
+      }
+
+      /**
+       * 
+       * @param manuallyDetach wicket request and conversation scope objects
+       *           instead of immediate after rendering page.
+       */
+      public void setManuallyDetach(boolean manuallyDetach)
+      {
+         this.manuallyDetach = manuallyDetach;
+         this.seamTestRequestCycle.setDetach(!manuallyDetach);
       }
    }
 
