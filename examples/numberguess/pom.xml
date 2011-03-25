@@ -43,6 +43,12 @@
          <groupId>org.jboss.seam.wicket</groupId>
          <artifactId>seam-wicket</artifactId>
          <scope>compile</scope>
+         <exclusions>
+           <exclusion>
+             <groupId>org.slf4j</groupId>
+             <artifactId>slf4j-api</artifactId>
+           </exclusion>
+         </exclusions>
       </dependency>
 
       <dependency>
@@ -80,7 +86,7 @@
    </dependencies>
 
    <build>
-      <finalName>${project.artifactId}</finalName>
+      <finalName>wicket-numberguess</finalName>
       <!-- Override the resource filtering to support storing html alongside classes -->
       <resources>
          <resource>
