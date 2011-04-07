@@ -1,4 +1,4 @@
-package org.jboss.seam.wicket.example.numberguess.ftest;
+package org.jboss.seam.wicket.examples.numberguess.ftest;
 
 import static org.jboss.test.selenium.locator.LocatorFactory.jq;
 

@@ -1,4 +1,4 @@
-package org.jboss.seam.wicket.example.numberguess;
+package org.jboss.seam.wicket.examples.numberguess;
 
 import java.io.Serializable;
 

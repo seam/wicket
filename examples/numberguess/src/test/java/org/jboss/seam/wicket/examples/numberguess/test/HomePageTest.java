@@ -1,4 +1,4 @@
-package org.jboss.seam.wicket.example.numberguess.test;
+package org.jboss.seam.wicket.examples.numberguess.test;
 
 import java.util.ServiceLoader;
 
@@ -12,9 +12,9 @@ import org.jboss.arquillian.spi.DeployableContainer;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.seam.solder.reflection.Reflections;
 import org.jboss.seam.wicket.SeamApplication;
-import org.jboss.seam.wicket.example.numberguess.HomePage;
-import org.jboss.seam.wicket.example.numberguess.NumberGuessApplication;
-import org.jboss.seam.wicket.example.numberguess.test.util.MavenArtifactResolver;
+import org.jboss.seam.wicket.examples.numberguess.HomePage;
+import org.jboss.seam.wicket.examples.numberguess.NumberGuessApplication;
+import org.jboss.seam.wicket.examples.numberguess.test.util.MavenArtifactResolver;
 import org.jboss.seam.wicket.mock.SeamWicketTester;
 import org.jboss.seam.wicket.util.NonContextual;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -41,7 +41,7 @@ public class HomePageTest extends Arquillian
          .addPackage(SeamWicketTester.class.getPackage())
          .addClasses(Assert.class, AssertionFailedError.class)
          // ugh, arquillian, don't make this so painful :(
-         .addResource("org/jboss/seam/wicket/example/numberguess/HomePage.html", "WEB-INF/classes/org/jboss/seam/wicket/example/numberguess/HomePage.html")
+         .addResource("org/jboss/seam/wicket/examples/numberguess/HomePage.html", "WEB-INF/classes/org/jboss/seam/wicket/examples/numberguess/HomePage.html")
          .addWebResource("test-jetty-env.xml", "jetty-env.xml")
          .addWebResource(EmptyAsset.INSTANCE, "beans.xml")
          .addLibraries(

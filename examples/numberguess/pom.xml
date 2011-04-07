@@ -225,7 +225,7 @@
                   <configuration>
                      <skip>false</skip>
                      <excludes>
-                        <exclude>org/jboss/seam/wicket/example/numberguess/ftest/*.java</exclude>
+                        <exclude>org/jboss/seam/wicket/examples/numberguess/ftest/*.java</exclude>
                      </excludes>
                   </configuration>
                </plugin>
@@ -271,7 +271,7 @@
                   <configuration>
                      <skip>false</skip>
                      <excludes>
-                        <exclude>org/jboss/seam/wicket/example/numberguess/ftest/*.java</exclude>
+                        <exclude>org/jboss/seam/wicket/examples/numberguess/ftest/*.java</exclude>
                      </excludes>
                   </configuration>
                </plugin>

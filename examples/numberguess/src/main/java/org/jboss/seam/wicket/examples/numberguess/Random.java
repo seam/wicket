@@ -1,4 +1,4 @@
-package org.jboss.seam.wicket.example.numberguess;
+package org.jboss.seam.wicket.examples.numberguess;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

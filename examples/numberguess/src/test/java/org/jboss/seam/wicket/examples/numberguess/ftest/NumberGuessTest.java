@@ -1,4 +1,4 @@
-package org.jboss.seam.wicket.example.numberguess.ftest;
+package org.jboss.seam.wicket.examples.numberguess.ftest;
 
 import org.jboss.test.selenium.AbstractTestCase;
 import org.testng.annotations.BeforeMethod;
