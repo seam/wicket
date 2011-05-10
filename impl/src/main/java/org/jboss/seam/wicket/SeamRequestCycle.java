@@ -28,114 +28,92 @@ import org.jboss.weld.context.http.HttpConversationContext;
  * <li>Sets up the conversational context when the request target is set
  * <li>Tears down the conversation context on detach() of the RequestCycle
  * </ul>
- * 
+ *
+ * @author cpopetz
  * @see SeamWebRequestCycleProcessor Which handles propogation of conversation
  *      data for newly-started long running conversations, by storing their ids
  *      in the page metadata
- * @author cpopetz
- * 
  */
-public class SeamRequestCycle extends WebRequestCycle
-{
-   public SeamRequestCycle(WebApplication application, WebRequest request, Response response)
-   {
-      super(application, request, response);
-   }
+public class SeamRequestCycle extends WebRequestCycle {
+    public SeamRequestCycle(WebApplication application, WebRequest request, Response response) {
+        super(application, request, response);
+    }
 
-   /**
-    * Override to set up the conversation context and to choose the conversation
-    * if a conversation id is present in target metadata.
-    */
-   @Override
-   protected void onRequestTargetSet(IRequestTarget target)
-   {
-      super.onRequestTargetSet(target);
+    /**
+     * Override to set up the conversation context and to choose the conversation
+     * if a conversation id is present in target metadata.
+     */
+    @Override
+    protected void onRequestTargetSet(IRequestTarget target) {
+        super.onRequestTargetSet(target);
 
-      Page page = null;
-      if (target instanceof IPageRequestTarget)
-      {
-         page = ((IPageRequestTarget) target).getPage();
-      }
+        Page page = null;
+        if (target instanceof IPageRequestTarget) {
+            page = ((IPageRequestTarget) target).getPage();
+        }
 
-      // Two possible specifications of cid: page metadata or request url; the
-      // latter is used to propagate the conversation to mounted (bookmarkable)
-      // paths after a redirect
+        // Two possible specifications of cid: page metadata or request url; the
+        // latter is used to propagate the conversation to mounted (bookmarkable)
+        // paths after a redirect
 
-      String cid = null;
-      if (page != null)
-      {
-         cid = page.getMetaData(SeamMetaData.CID);
-      }
-      else
-      {
-         cid = request.getParameter("cid");
-      }
+        String cid = null;
+        if (page != null) {
+            cid = page.getMetaData(SeamMetaData.CID);
+        } else {
+            cid = request.getParameter("cid");
+        }
 
-      ConversationContext conversationContext = instance().select(HttpConversationContext.class).get();
-      if (!conversationContext.isActive())
-         conversationContext.activate(cid);
-      Conversation conversation = conversationContext.getCurrentConversation();
+        ConversationContext conversationContext = instance().select(HttpConversationContext.class).get();
+        if (!conversationContext.isActive())
+            conversationContext.activate(cid);
+        Conversation conversation = conversationContext.getCurrentConversation();
 
-      // handle propagation of existing long running converstaions to new
-      // targets
-      if (!conversation.isTransient())
-      {
-         // Note that we can't propagate conversations with other redirect
-         // targets like RequestRedirectTarget through this mechanism, because
-         // it does not provide an interface to modify its target URL. If
-         // propagation with those targets is to be supported, it needs a custom
-         // Response subclass.
-         if (isRedirect() && target instanceof BookmarkablePageRequestTarget)
-         {
-            BookmarkablePageRequestTarget bookmark = (BookmarkablePageRequestTarget) target;
-            // if a cid has already been specified, don't override it
-            if (!bookmark.getPageParameters().containsKey("cid"))
-               bookmark.getPageParameters().add("cid", conversation.getId());
-         }
+        // handle propagation of existing long running converstaions to new
+        // targets
+        if (!conversation.isTransient()) {
+            // Note that we can't propagate conversations with other redirect
+            // targets like RequestRedirectTarget through this mechanism, because
+            // it does not provide an interface to modify its target URL. If
+            // propagation with those targets is to be supported, it needs a custom
+            // Response subclass.
+            if (isRedirect() && target instanceof BookmarkablePageRequestTarget) {
+                BookmarkablePageRequestTarget bookmark = (BookmarkablePageRequestTarget) target;
+                // if a cid has already been specified, don't override it
+                if (!bookmark.getPageParameters().containsKey("cid"))
+                    bookmark.getPageParameters().add("cid", conversation.getId());
+            }
 
-         // If we have a target page, propagate the conversation to the page's
-         // metadata
-         if (page != null)
-         {
-            page.setMetaData(SeamMetaData.CID, conversation.getId());
-         }
-      }
-      else if (cid != null)
-      {
-         handleMissingConversation(cid);
-      }
+            // If we have a target page, propagate the conversation to the page's
+            // metadata
+            if (page != null) {
+                page.setMetaData(SeamMetaData.CID, conversation.getId());
+            }
+        } else if (cid != null) {
+            handleMissingConversation(cid);
+        }
 
-   }
+    }
 
-   protected void handleMissingConversation(String id)
-   {
+    protected void handleMissingConversation(String id) {
 
-   }
+    }
 
-   @Override
-   public void detach()
-   {
-      super.detach();
-      ConversationContext conversationContext = instance().select(HttpConversationContext.class).get();
-      try
-      {
-         conversationContext.invalidate();
-      }
-      catch (Exception e)
-      {
-      }
-      try
-      {
-         conversationContext.deactivate();
-      }
-      catch (Exception e)
-      {
-      }
-   }
+    @Override
+    public void detach() {
+        super.detach();
+        ConversationContext conversationContext = instance().select(HttpConversationContext.class).get();
+        try {
+            conversationContext.invalidate();
+        } catch (Exception e) {
+        }
+        try {
+            conversationContext.deactivate();
+        } catch (Exception e) {
+        }
+    }
 
-   private static Instance<Context> instance()
-   {
-      return Container.instance().deploymentManager().instance().select(Context.class);
-   }
+    private static Instance<Context> instance() {
+        return Container.instance().deploymentManager().instance().select(Context.class);
+    }
 
 }

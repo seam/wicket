@@ -9,8 +9,8 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.request.IRequestCycleProcessor;
-import org.jboss.seam.wicket.util.NonContextual;
 import org.jboss.seam.solder.beanManager.BeanManagerLocator;
+import org.jboss.seam.wicket.util.NonContextual;
 
 /**
  * A convenience subclass of wicket's WebApplication which adds the hooks
@@ -21,67 +21,60 @@ import org.jboss.seam.solder.beanManager.BeanManagerLocator;
  * SeamComponentInstantiationListener, and override the two methods below to
  * return the RequestCycle and IRequestCycleProcessor subclasses specific to
  * Seam, or your subclasses of those classes.
- * 
+ *
  * @author cpopetz
  * @author pmuir
  * @author ivaynberg
- * 
  * @see WebApplication
  * @see SeamWebRequestCycleProcessor
  * @see SeamRequestCycle
  */
-public abstract class SeamApplication extends WebApplication
-{
-   
-   private NonContextual<SeamComponentInstantiationListener> seamComponentInstantiationListener;
-   private NonContextual<SeamWebRequestCycleProcessor> seamWebRequestCycleProcessor;
+public abstract class SeamApplication extends WebApplication {
 
-   /**
-    */
-   public SeamApplication()
-   {
-   }
+    private NonContextual<SeamComponentInstantiationListener> seamComponentInstantiationListener;
+    private NonContextual<SeamWebRequestCycleProcessor> seamWebRequestCycleProcessor;
 
-   /**
-    * Add our component instantiation listener
-    * 
-    * @see SeamComponentInstantiationListener
-    */
-   @Override
-   protected void internalInit() 
-   {
-      super.internalInit();
-      BeanManager manager = new BeanManagerLocator().getBeanManager();
-      this.seamComponentInstantiationListener = NonContextual.of(SeamComponentInstantiationListener.class,manager);
-      this.seamWebRequestCycleProcessor = NonContextual.of(getWebRequestCycleProcessorClass(),manager);
-      addComponentInstantiationListener(seamComponentInstantiationListener.newInstance().produce().inject().get());
-   }
-   
-   protected Class<? extends SeamWebRequestCycleProcessor> 
-   getWebRequestCycleProcessorClass() 
-   { 
-      return SeamWebRequestCycleProcessor.class;
-   }
+    /**
+     */
+    public SeamApplication() {
+    }
 
-   /**
-    * Override to return our Seam-specific request cycle processor
-    * 
-    * @see SeamWebRequestCycleProcessor
-    */
-   @Override
-   protected IRequestCycleProcessor newRequestCycleProcessor()
-   {
-      return seamWebRequestCycleProcessor.newInstance().produce().inject().get();
-   }
+    /**
+     * Add our component instantiation listener
+     *
+     * @see SeamComponentInstantiationListener
+     */
+    @Override
+    protected void internalInit() {
+        super.internalInit();
+        BeanManager manager = new BeanManagerLocator().getBeanManager();
+        this.seamComponentInstantiationListener = NonContextual.of(SeamComponentInstantiationListener.class, manager);
+        this.seamWebRequestCycleProcessor = NonContextual.of(getWebRequestCycleProcessorClass(), manager);
+        addComponentInstantiationListener(seamComponentInstantiationListener.newInstance().produce().inject().get());
+    }
 
-   /**
-    * Override to return our Seam-specific request cycle
-    * 
-    * @see SeamRequestCycle
-    */
-   @Override
-   public RequestCycle newRequestCycle(final Request request, final Response response)
-   {
-      return new SeamRequestCycle(this, (WebRequest) request, (WebResponse) response);
-   }
+    protected Class<? extends SeamWebRequestCycleProcessor>
+    getWebRequestCycleProcessorClass() {
+        return SeamWebRequestCycleProcessor.class;
+    }
+
+    /**
+     * Override to return our Seam-specific request cycle processor
+     *
+     * @see SeamWebRequestCycleProcessor
+     */
+    @Override
+    protected IRequestCycleProcessor newRequestCycleProcessor() {
+        return seamWebRequestCycleProcessor.newInstance().produce().inject().get();
+    }
+
+    /**
+     * Override to return our Seam-specific request cycle
+     *
+     * @see SeamRequestCycle
+     */
+    @Override
+    public RequestCycle newRequestCycle(final Request request, final Response response) {
+        return new SeamRequestCycle(this, (WebRequest) request, (WebResponse) response);
+    }
 }

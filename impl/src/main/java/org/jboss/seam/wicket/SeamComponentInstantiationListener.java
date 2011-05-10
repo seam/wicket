@@ -9,24 +9,21 @@ import org.jboss.seam.wicket.util.NonContextual;
 
 /**
  * This listener uses the BeanManager to handle injections for all wicket components.
- * 
+ *
  * @author cpopetz
- * 
  */
-public class SeamComponentInstantiationListener implements IComponentInstantiationListener
-{
-   
-   @Inject
-   private BeanManager manager;
-   
-   public void onInstantiation(Component component)
-   {
-      /*
-       * The manager could be null in unit testing environments
-       */
-      if (manager != null) {
-         NonContextual.of(component.getClass(), manager)
-               .existingInstance(component).inject();
-      }
-   }
+public class SeamComponentInstantiationListener implements IComponentInstantiationListener {
+
+    @Inject
+    private BeanManager manager;
+
+    public void onInstantiation(Component component) {
+        /*
+        * The manager could be null in unit testing environments
+        */
+        if (manager != null) {
+            NonContextual.of(component.getClass(), manager)
+                    .existingInstance(component).inject();
+        }
+    }
 }

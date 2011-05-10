@@ -9,7 +9,7 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -22,46 +22,42 @@ import org.apache.wicket.protocol.http.WebRequest;
 import org.jboss.seam.wicket.SeamRequestCycle;
 
 /**
- * Simple request cycle with manual control of detaching conversation context and rest of wicket stuff. 
+ * Simple request cycle with manual control of detaching conversation context and rest of wicket stuff.
+ *
  * @author <a href="http://community.jboss.org/people/smigielski">Marek
  *         Smigielski</a>
- *
  */
-public class SeamTestRequestCycle extends SeamRequestCycle
-{
-   private boolean detach;
+public class SeamTestRequestCycle extends SeamRequestCycle {
+    private boolean detach;
 
 
-   public SeamTestRequestCycle(WebApplication application, WebRequest request, Response response,boolean detach)
-   {
-      super(application, request, response);
-      this.detach=detach;
-   }
-   
-   /** Detach only when you know that conversation scope isn't need any more.
-    * @see org.jboss.seam.wicket.SeamRequestCycle#detach()
-    */
-   @Override
-   public void detach()
-   {
-      if(isDetach()){
-         super.detach();
-      }
-   }
+    public SeamTestRequestCycle(WebApplication application, WebRequest request, Response response, boolean detach) {
+        super(application, request, response);
+        this.detach = detach;
+    }
 
-   public void superDetach()
-   {
-      super.detach();
-   }
-   
+    /**
+     * Detach only when you know that conversation scope isn't need any more.
+     *
+     * @see org.jboss.seam.wicket.SeamRequestCycle#detach()
+     */
+    @Override
+    public void detach() {
+        if (isDetach()) {
+            super.detach();
+        }
+    }
 
-   public boolean isDetach()
-   {
-      return detach;
-   }
+    public void superDetach() {
+        super.detach();
+    }
 
-   public void setDetach(boolean detach)
-   {
-      this.detach = detach;
-   }
+
+    public boolean isDetach() {
+        return detach;
+    }
+
+    public void setDetach(boolean detach) {
+        this.detach = detach;
+    }
 }

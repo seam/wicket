@@ -9,7 +9,7 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -39,137 +39,132 @@ import org.junit.runner.RunWith;
 
 /**
  * Base test for wicket and seam integration.
- * 
+ *
  * @author <a href="http://community.jboss.org/people/smigielski">Marek
  *         Smigielski</a>
  */
 @RunWith(Arquillian.class)
-public class SeamApplicationTest
-{
-   @Deployment
-   public static WebArchive createTestArchive()
-   {
-      return ShrinkWrap.create(WebArchive.class, "test.war")
-      .addPackage(SeamApplication.class.getPackage())
-      .addPackage(RequestTestPage.class.getPackage())
-      .addPackage(NonContextual.class.getPackage())
-      .addPackage(SeamWicketTester.class.getPackage())
-      // Page for testRenderPage
-      .addResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPage.html")
-      .addResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPageExpected.html")
-      // Page for testRequestScopeInjection
-      .addResource("RequestTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPage.html")
-      .addResource("RequestTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPageExpected.html")
-      // Page for testConversationScopeInjection
-      .addResource("ConversationTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPage.html")
-      .addResource("ConversationTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPageExpected.html")
-     
-      .addWebResource(EmptyAsset.INSTANCE, "beans.xml")
-      .addLibraries(MavenArtifactResolver.resolve("org.apache.wicket:wicket"))
-      .setWebXML("test-web.xml");
-   }
+public class SeamApplicationTest {
+    @Deployment
+    public static WebArchive createTestArchive() {
+        return ShrinkWrap.create(WebArchive.class, "test.war")
+                .addPackage(SeamApplication.class.getPackage())
+                .addPackage(RequestTestPage.class.getPackage())
+                .addPackage(NonContextual.class.getPackage())
+                .addPackage(SeamWicketTester.class.getPackage())
+                        // Page for testRenderPage
+                .addResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPage.html")
+                .addResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPageExpected.html")
+                        // Page for testRequestScopeInjection
+                .addResource("RequestTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPage.html")
+                .addResource("RequestTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPageExpected.html")
+                        // Page for testConversationScopeInjection
+                .addResource("ConversationTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPage.html")
+                .addResource("ConversationTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPageExpected.html")
 
-   @Inject
-   SeamWicketTester tester;
+                .addWebResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addLibraries(MavenArtifactResolver.resolve("org.apache.wicket:wicket"))
+                .setWebXML("test-web.xml");
+    }
 
-   @Inject
-   RequestObjectProducer requestObjectProducer;
+    @Inject
+    SeamWicketTester tester;
 
-   @Inject
-   ConversationObjectProducer conversationObjectProducer;
+    @Inject
+    RequestObjectProducer requestObjectProducer;
 
-   /**
-    * Test that simple rendering works fine and we get what we have expected.
-    * 
-    * @throws Exception
-    */
-   @Test
-   public void testRenderPage() throws Exception
-   {
-      Assert.assertNotNull(tester);
-      tester.startPage(EmptyPage.class);
+    @Inject
+    ConversationObjectProducer conversationObjectProducer;
 
-      tester.assertRenderedPage(EmptyPage.class);
+    /**
+     * Test that simple rendering works fine and we get what we have expected.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testRenderPage() throws Exception {
+        Assert.assertNotNull(tester);
+        tester.startPage(EmptyPage.class);
 
-      tester.assertResultPage(EmptyPage.class, "EmptyPageExpected.html");
-   }
+        tester.assertRenderedPage(EmptyPage.class);
 
-   /**
-    * Test that page injection of request object works both in and out.
-    * 
-    * @throws Exception
-    */
-   @Test
-   public void testRequestScopeInjection() throws Exception
-   {
-      Assert.assertNotNull(tester);
-      // initialize request object values
-      requestObjectProducer.add("First request message");
-      requestObjectProducer.add("Second request message");
-      requestObjectProducer.add("This message is not retrived");
+        tester.assertResultPage(EmptyPage.class, "EmptyPageExpected.html");
+    }
 
-      // test first request
-      tester.startPage(RequestTestPage.class);
-      tester.assertRenderedPage(RequestTestPage.class);
-      tester.assertResultPage(RequestTestPage.class, "RequestTestPageExpected.html");
+    /**
+     * Test that page injection of request object works both in and out.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testRequestScopeInjection() throws Exception {
+        Assert.assertNotNull(tester);
+        // initialize request object values
+        requestObjectProducer.add("First request message");
+        requestObjectProducer.add("Second request message");
+        requestObjectProducer.add("This message is not retrived");
 
-      // test second request
-      tester.clickLink("refresh");
-      tester.assertRenderedPage(RequestTestPage.class);
-      tester.assertLabel("headerLabel", "First request message");
-      tester.assertLabel("spanLabel", "Second request message");
-      tester.assertLabel("refresh:number", "1");
-   }
+        // test first request
+        tester.startPage(RequestTestPage.class);
+        tester.assertRenderedPage(RequestTestPage.class);
+        tester.assertResultPage(RequestTestPage.class, "RequestTestPageExpected.html");
 
-   /**
-    * Test that page injection of request object works both in and out.
-    * 
-    * @throws Exception
-    */
-   @Test
-   public void testConversationScopeInjection() throws Exception
-   {
-      Assert.assertNotNull(tester);
-      DummySeamApplication application = (DummySeamApplication) tester.getApplication();
-      application.setManuallyDetach(true);
-      // initialize conversation object values
-      conversationObjectProducer.add("First conversation message");
-      conversationObjectProducer.add("Second conversation message");
-      conversationObjectProducer.add("This message is not retrived");
+        // test second request
+        tester.clickLink("refresh");
+        tester.assertRenderedPage(RequestTestPage.class);
+        tester.assertLabel("headerLabel", "First request message");
+        tester.assertLabel("spanLabel", "Second request message");
+        tester.assertLabel("refresh:number", "1");
+    }
 
-      // test first request in first conversation
-      tester.startPage(ConversationTestPage.class);
-      tester.assertRenderedPage(ConversationTestPage.class);
-      tester.assertResultPage(ConversationTestPage.class, "ConversationTestPageExpected.html");
-      // always detach request after all tests on current page
-      application.detach();
-      // test second request in first conversation
-      tester.clickLink("refresh");
+    /**
+     * Test that page injection of request object works both in and out.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testConversationScopeInjection() throws Exception {
+        Assert.assertNotNull(tester);
+        DummySeamApplication application = (DummySeamApplication) tester.getApplication();
+        application.setManuallyDetach(true);
+        // initialize conversation object values
+        conversationObjectProducer.add("First conversation message");
+        conversationObjectProducer.add("Second conversation message");
+        conversationObjectProducer.add("This message is not retrived");
 
-      tester.assertRenderedPage(ConversationTestPage.class);
-      // without manually detaching the conversation scope is closed to early.
-      tester.assertLabel("headerLabel", "First conversation message");
-      tester.assertLabel("spanLabel", "First conversation message");
-      tester.assertLabel("refresh:number", "1");
-      // always detach request after all tests on current page
-      application.detach();
+        // test first request in first conversation
+        tester.startPage(ConversationTestPage.class);
+        tester.assertRenderedPage(ConversationTestPage.class);
+        tester.assertResultPage(ConversationTestPage.class, "ConversationTestPageExpected.html");
+        // always detach request after all tests on current page
+        application.detach();
+        // test second request in first conversation
+        tester.clickLink("refresh");
 
-      // test first request in second conversation
-      tester.startPage(ConversationTestPage.class);
-      tester.assertRenderedPage(ConversationTestPage.class);
-      tester.assertLabel("headerLabel", "Second conversation message");
-      tester.assertLabel("spanLabel", "Second conversation message");
-      tester.assertLabel("refresh:number", "0");
-      // always detach request after all tests on current page
-      application.detach();
+        tester.assertRenderedPage(ConversationTestPage.class);
+        // without manually detaching the conversation scope is closed to early.
+        tester.assertLabel("headerLabel", "First conversation message");
+        tester.assertLabel("spanLabel", "First conversation message");
+        tester.assertLabel("refresh:number", "1");
+        // always detach request after all tests on current page
+        application.detach();
 
-      // test second request in second conversation
-      tester.clickLink("refresh");
-      tester.assertRenderedPage(ConversationTestPage.class);
-      tester.assertLabel("headerLabel", "Second conversation message");
-      tester.assertLabel("spanLabel", "Second conversation message");
-      tester.assertLabel("refresh:number", "1");
-      // always detach request after all tests on current page
-      application.detach();
-   }
+        // test first request in second conversation
+        tester.startPage(ConversationTestPage.class);
+        tester.assertRenderedPage(ConversationTestPage.class);
+        tester.assertLabel("headerLabel", "Second conversation message");
+        tester.assertLabel("spanLabel", "Second conversation message");
+        tester.assertLabel("refresh:number", "0");
+        // always detach request after all tests on current page
+        application.detach();
+
+        // test second request in second conversation
+        tester.clickLink("refresh");
+        tester.assertRenderedPage(ConversationTestPage.class);
+        tester.assertLabel("headerLabel", "Second conversation message");
+        tester.assertLabel("spanLabel", "Second conversation message");
+        tester.assertLabel("refresh:number", "1");
+        // always detach request after all tests on current page
+        application.detach();
+    }
 }

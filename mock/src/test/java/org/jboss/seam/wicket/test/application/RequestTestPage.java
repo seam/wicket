@@ -9,7 +9,7 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -28,53 +28,52 @@ import org.jboss.logging.Logger;
 
 /**
  * Simple wicket test page for request object injection
- * 
+ *
  * @author <a href="http://community.jboss.org/people/smigielski">Marek
  *         Smigielski</a>
  */
-public class RequestTestPage extends WebPage
-{
-   @Inject 
-   Logger log;
+public class RequestTestPage extends WebPage {
+    @Inject
+    Logger log;
 
-   @Inject @RequestScopeQualifier
-   StringObject stringObject;
-   
-   @Inject @RequestScopeQualifier
-   Instance<StringObject> stringObjectInstance;
+    @Inject
+    @RequestScopeQualifier
+    StringObject stringObject;
 
-   public RequestTestPage()
-   {
-      log.info("Rendering test page");
-      // headerLabel is CDI object cached in wicket
-      Label headerLabel = new Label("headerLabel", new Model<String>(stringObject.getValue()));
-      headerLabel.setEscapeModelStrings(false);
-      add(headerLabel);
-      
-      // spanLabel is CDI object retrieved dynamically every request
-      Label spanLabel = new Label("spanLabel", new Model<String>(){
-         @Override
-         public String getObject()
-         {
-            return stringObjectInstance.get().getValue();
-         }
-      });
-      spanLabel.setEscapeModelStrings(false);
-      add(spanLabel);
-      
-      // Counter is wicket managed object. 
-      final Count count = new Count(); // simple counter object
-      Link refresh = new Link("refresh") {
-          public void onClick() {
-              count.increment();
-          }
-      };
-      refresh.add(new Label("number", new Model<String>() {
-          public String getObject() {
-              return Integer.toString(count.getCount());
-          }
-      }));
-      add(refresh);
+    @Inject
+    @RequestScopeQualifier
+    Instance<StringObject> stringObjectInstance;
 
-   }
+    public RequestTestPage() {
+        log.info("Rendering test page");
+        // headerLabel is CDI object cached in wicket
+        Label headerLabel = new Label("headerLabel", new Model<String>(stringObject.getValue()));
+        headerLabel.setEscapeModelStrings(false);
+        add(headerLabel);
+
+        // spanLabel is CDI object retrieved dynamically every request
+        Label spanLabel = new Label("spanLabel", new Model<String>() {
+            @Override
+            public String getObject() {
+                return stringObjectInstance.get().getValue();
+            }
+        });
+        spanLabel.setEscapeModelStrings(false);
+        add(spanLabel);
+
+        // Counter is wicket managed object.
+        final Count count = new Count(); // simple counter object
+        Link refresh = new Link("refresh") {
+            public void onClick() {
+                count.increment();
+            }
+        };
+        refresh.add(new Label("number", new Model<String>() {
+            public String getObject() {
+                return Integer.toString(count.getCount());
+            }
+        }));
+        add(refresh);
+
+    }
 }

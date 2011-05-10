@@ -9,7 +9,7 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -26,32 +26,29 @@ import org.jboss.logging.Logger;
 
 /**
  * Request object producer which can be injected and control from test class.
- * 
+ *
  * @author <a href="http://community.jboss.org/people/smigielski">Marek
  *         Smigielski</a>
- * 
  */
 @ApplicationScoped
-public class RequestObjectProducer extends AbstractObjectProducer
-{
-   
-   @Inject
-   Logger log;
-   
-   /**
-    * Produces text message retriving first element from localMessages. If local
-    * message list is null or empty returning empty string.
-    * 
-    * @return simple text message
-    */
-   @Produces
-   @RequestScopeQualifier
-   @RequestScoped
-   public StringObject messageProducer()
-   {
-      StringObject stringObject = getMessage();
-      log.info("Producing request object: "+stringObject.getValue());
-      return stringObject;
-   }
+public class RequestObjectProducer extends AbstractObjectProducer {
+
+    @Inject
+    Logger log;
+
+    /**
+     * Produces text message retriving first element from localMessages. If local
+     * message list is null or empty returning empty string.
+     *
+     * @return simple text message
+     */
+    @Produces
+    @RequestScopeQualifier
+    @RequestScoped
+    public StringObject messageProducer() {
+        StringObject stringObject = getMessage();
+        log.info("Producing request object: " + stringObject.getValue());
+        return stringObject;
+    }
 
 }

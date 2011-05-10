@@ -9,7 +9,7 @@
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,  
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -30,64 +30,56 @@ import org.jboss.logging.Logger;
 /**
  * Simple wicket test page for conversation object injection. Start long running
  * conversation immediate after adding all components
- * 
+ *
  * @author <a href="http://community.jboss.org/people/smigielski">Marek
  *         Smigielski</a>
  */
-public class ConversationTestPage extends WebPage
-{
-   @Inject
-   Logger log;
+public class ConversationTestPage extends WebPage {
+    @Inject
+    Logger log;
 
-   @Inject
-   @ConversationScopeQualifier
-   StringObject stringObject;
+    @Inject
+    @ConversationScopeQualifier
+    StringObject stringObject;
 
-   @Inject
-   @ConversationScopeQualifier
-   Instance<StringObject> stringObjectInstance;
+    @Inject
+    @ConversationScopeQualifier
+    Instance<StringObject> stringObjectInstance;
 
-   @Inject
-   Conversation conversation;
+    @Inject
+    Conversation conversation;
 
-   public ConversationTestPage()
-   {
-      log.info("Rendering test page");
+    public ConversationTestPage() {
+        log.info("Rendering test page");
 
-      // headerLabel is CDI object cached in wicket
-      Label headerLabel = new Label("headerLabel", new Model<String>(stringObject.getValue()));
-      headerLabel.setEscapeModelStrings(false);
-      add(headerLabel);
+        // headerLabel is CDI object cached in wicket
+        Label headerLabel = new Label("headerLabel", new Model<String>(stringObject.getValue()));
+        headerLabel.setEscapeModelStrings(false);
+        add(headerLabel);
 
-      // spanLabel is CDI object retrieved dynamically every request
-      Label spanLabel = new Label("spanLabel", new Model<String>()
-      {
-         @Override
-         public String getObject()
-         {
-            return stringObjectInstance.get().getValue();
-         }
-      });
-      spanLabel.setEscapeModelStrings(false);
-      add(spanLabel);
+        // spanLabel is CDI object retrieved dynamically every request
+        Label spanLabel = new Label("spanLabel", new Model<String>() {
+            @Override
+            public String getObject() {
+                return stringObjectInstance.get().getValue();
+            }
+        });
+        spanLabel.setEscapeModelStrings(false);
+        add(spanLabel);
 
-      // Counter is wicket managed object.
-      final Count count = new Count(); // simple counter object
-      Link refresh = new Link("refresh")
-      {
-         public void onClick()
-         {
-            count.increment();
-         }
-      };
-      refresh.add(new Label("number", new Model<String>()
-      {
-         public String getObject()
-         {
-            return Integer.toString(count.getCount());
-         }
-      }));
-      add(refresh);
-      conversation.begin();
-   }
+        // Counter is wicket managed object.
+        final Count count = new Count(); // simple counter object
+        Link refresh = new Link("refresh") {
+            public void onClick() {
+                count.increment();
+            }
+        };
+        refresh.add(new Label("number", new Model<String>() {
+            public String getObject() {
+                return Integer.toString(count.getCount());
+            }
+        }));
+        add(refresh);
+        conversation.begin();
+    }
 }

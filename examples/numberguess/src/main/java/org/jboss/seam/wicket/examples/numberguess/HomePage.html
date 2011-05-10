@@ -1,24 +1,25 @@
 <html>
-   <head>
-      <title>Wicket Weld example</title>
-   </head>
-   <body>
-      <h1>Guess a number...</h1>
-      <form wicket:id="NumberGuessMain">
-         <div style="color: red">
-            <span wicket:id="messages"/>
-         </div>
-   
-         <div wicket:id="prompt" id="prompt">
-            I'm thinking of a number between 0 and 100.  You have 10 guesses.
-         </div>
-     
-         <div>
-            <span wicket:id="guessLabel">Your guess:</span>
-            <input wicket:id="inputGuess" type="text" size="3"/>
-            <input wicket:id="GuessButton" type="submit" value="Guess"/>
-            <input wicket:id="RestartButton" type="submit" value="Reset"/>
-         </div>
-      </form>
-   </body>
+<head>
+    <title>Wicket Weld example</title>
+</head>
+<body>
+<h1>Guess a number...</h1>
+
+<form wicket:id="NumberGuessMain">
+    <div style="color: red">
+        <span wicket:id="messages"/>
+    </div>
+
+    <div wicket:id="prompt" id="prompt">
+        I'm thinking of a number between 0 and 100. You have 10 guesses.
+    </div>
+
+    <div>
+        <span wicket:id="guessLabel">Your guess:</span>
+        <input wicket:id="inputGuess" type="text" size="3"/>
+        <input wicket:id="GuessButton" type="submit" value="Guess"/>
+        <input wicket:id="RestartButton" type="submit" value="Reset"/>
+    </div>
+</form>
+</body>
 </html>
