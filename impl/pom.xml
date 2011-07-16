@@ -65,7 +65,6 @@
          <groupId>org.jboss.weld.servlet</groupId>
          <artifactId>weld-servlet-core</artifactId>
          <scope>provided</scope>
-         <version>1.1.2-SNAPSHOT</version>
          <optional>true</optional>
       </dependency>
    </dependencies>
