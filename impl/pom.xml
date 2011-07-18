@@ -60,6 +60,13 @@
          <artifactId>weld-core</artifactId>
          <scope>provided</scope>
       </dependency>
+      
+      <dependency>
+         <groupId>org.jboss.weld.servlet</groupId>
+         <artifactId>weld-servlet-core</artifactId>
+         <scope>provided</scope>
+         <optional>true</optional>
+      </dependency>
    </dependencies>
 
    <build>
