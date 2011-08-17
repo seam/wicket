@@ -74,6 +74,7 @@
          <groupId>org.jboss.arquillian</groupId>
          <artifactId>arquillian-junit</artifactId>
          <version>1.0.0.Alpha5</version>
+         <scope>test</scope>
       </dependency>
       
 
