@@ -25,7 +25,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.value.Count;
-import org.jboss.logging.Logger;
+import org.jboss.seam.solder.logging.Logger;
 
 /**
  * Simple wicket test page for conversation object injection. Start long running
