@@ -53,17 +53,17 @@ public class SeamApplicationTest {
                 .addPackage(NonContextual.class.getPackage())
                 .addPackage(SeamWicketTester.class.getPackage())
                         // Page for testRenderPage
-                .addResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPage.html")
-                .addResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPageExpected.html")
+                .addAsResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPage.html")
+                .addAsResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPageExpected.html")
                         // Page for testRequestScopeInjection
-                .addResource("RequestTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPage.html")
-                .addResource("RequestTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPageExpected.html")
+                .addAsResource("RequestTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPage.html")
+                .addAsResource("RequestTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPageExpected.html")
                         // Page for testConversationScopeInjection
-                .addResource("ConversationTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPage.html")
-                .addResource("ConversationTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPageExpected.html")
+                .addAsResource("ConversationTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPage.html")
+                .addAsResource("ConversationTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPageExpected.html")
 
-                .addWebResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addLibraries(MavenArtifactResolver.resolve("org.apache.wicket:wicket"))
+                .addAsWebResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsLibraries(MavenArtifactResolver.resolve("org.apache.wicket:wicket"))
                 .setWebXML("test-web.xml");
     }
 

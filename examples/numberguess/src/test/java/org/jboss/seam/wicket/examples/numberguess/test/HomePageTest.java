@@ -37,14 +37,14 @@ public class HomePageTest extends Arquillian {
                 .addPackage(SeamWicketTester.class.getPackage())
                 .addClasses(Assert.class, AssertionFailedError.class)
                         // ugh, arquillian, don't make this so painful :(
-                .addResource("org/jboss/seam/wicket/examples/numberguess/HomePage.html", "WEB-INF/classes/org/jboss/seam/wicket/examples/numberguess/HomePage.html")
-                .addWebResource("test-jetty-env.xml", "jetty-env.xml")
-                .addWebResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addLibraries(
+                .addAsResource("org/jboss/seam/wicket/examples/numberguess/HomePage.html", "WEB-INF/classes/org/jboss/seam/wicket/examples/numberguess/HomePage.html")
+                .addAsWebResource("test-jetty-env.xml", "jetty-env.xml")
+                .addAsWebResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsLibraries(
                         MavenArtifactResolver.resolve("org.apache.wicket:wicket:1.4.15"))
                 .setWebXML("test-web.xml");
         if (!ServiceLoader.load(DeployableContainer.class).iterator().next().getClass().getName().contains("embedded")) {
-            war.addLibrary(MavenArtifactResolver.resolve("org.jboss.seam.solder:seam-solder:3.0.0.CR4"));
+            war.addAsLibrary(MavenArtifactResolver.resolve("org.jboss.seam.solder:seam-solder:3.1.0.Beta1"));
         }
         return war;
     }

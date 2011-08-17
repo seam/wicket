@@ -22,7 +22,7 @@
    <parent>
       <groupId>org.jboss.seam.wicket</groupId>
       <artifactId>seam-wicket-parent</artifactId>
-      <version>3.0.1-SNAPSHOT</version>
+      <version>3.1.0-SNAPSHOT</version>
       <relativePath>../../pom.xml</relativePath>
    </parent>
 
@@ -72,6 +72,7 @@
          <groupId>org.jboss.arquillian</groupId>
          <artifactId>arquillian-testng</artifactId>
          <version>1.0.0.Alpha4</version>
+         <scope>test</scope>
       </dependency>
       
       <!-- Test dependencies -->
@@ -322,6 +323,30 @@
             </plugins>
          </build>
       </profile>
+
+      <!-- mvn clean package -Pjboss7 -->
+      <profile>
+         <id>jboss7</id>
+         <dependencies>
+            <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-jdk14</artifactId>
+               <scope>runtime</scope>
+            </dependency>
+         </dependencies>
+      </profile> 
+
+      <!-- mvn clean package -Pglassfish -->
+      <profile>
+         <id>glassfish</id>
+         <dependencies>
+            <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-jdk14</artifactId>
+               <scope>runtime</scope>
+            </dependency>
+         </dependencies>
+      </profile> 
 
       <!-- mvn -Pjetty jetty:run -->
       <profile>
