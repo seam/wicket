@@ -24,7 +24,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.value.Count;
-import org.jboss.seam.solder.logging.Logger;
+import org.jboss.seam.logging.Logger;
 
 /**
  * Simple wicket test page for request object injection
