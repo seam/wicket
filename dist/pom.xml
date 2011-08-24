@@ -75,7 +75,6 @@
          <artifactId>seam-wicket-example-numberguess</artifactId>
          <version>${project.version}</version>
          <type>zip</type>
-         <classifier>distsources</classifier>
          <optional>true</optional>
       </dependency>
 
