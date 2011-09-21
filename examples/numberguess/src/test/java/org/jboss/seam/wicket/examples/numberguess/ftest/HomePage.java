@@ -4,11 +4,11 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jboss.test.selenium.framework.AjaxSelenium;
-import org.jboss.test.selenium.locator.JQueryLocator;
-
-import static org.jboss.test.selenium.guard.request.RequestTypeGuardFactory.waitXhr;
-import static org.jboss.test.selenium.locator.LocatorFactory.jq;
+import org.jboss.arquillian.ajocado.framework.AjaxSelenium;
+import org.jboss.arquillian.ajocado.locator.JQueryLocator;
+import org.jboss.arquillian.drone.api.annotation.Drone;
+import static org.jboss.arquillian.ajocado.locator.LocatorFactory.jq;
+import static org.jboss.arquillian.ajocado.Ajocado.waitForXhr;
 
 public class HomePage {
     public static final JQueryLocator BUTTON_GUESS = jq("[name='GuessButton']");
@@ -17,6 +17,7 @@ public class HomePage {
     public static final JQueryLocator PROMPT = jq("#prompt");
     public static final Pattern PROMPT_PATTERN = Pattern.compile("I'm thinking of a number between (\\d+) and (\\d+). You have (\\d+) guesses.");
 
+    @Drone
     private AjaxSelenium selenium;
 
     public HomePage(AjaxSelenium selenium, URL contextPath) {
@@ -28,11 +29,11 @@ public class HomePage {
 
     public void guess(Integer guess) {
         selenium.type(FIELD_INPUT, guess.toString());
-        waitXhr(selenium).click(BUTTON_GUESS);
+        waitForXhr(selenium).click(BUTTON_GUESS);
     }
 
     public void reset() {
-        waitXhr(selenium).click(BUTTON_RESET);
+        waitForXhr(selenium).click(BUTTON_RESET);
     }
 
     public int getMin() {

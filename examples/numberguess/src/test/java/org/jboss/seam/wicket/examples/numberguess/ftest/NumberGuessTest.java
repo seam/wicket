@@ -1,22 +1,48 @@
 package org.jboss.seam.wicket.examples.numberguess.ftest;
 
-import org.jboss.test.selenium.AbstractTestCase;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import static org.junit.Assert.*;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.fail;
+import java.io.File;
+import java.net.URL;
+
+import org.jboss.arquillian.ajocado.framework.AjaxSelenium;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.importer.ZipImporter;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+
 
 /**
  * Tests for the numberguess example
  *
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  */
-public class NumberGuessTest extends AbstractTestCase {
+@RunWith(Arquillian.class)
+public class NumberGuessTest{
     private HomePage page;
+    public static final String ARCHIVE_NAME = "wicket-numberguess.war";
+    public static final String BUILD_DIRECTORY = "target";
+    
+    @ArquillianResource
+    URL contextPath;
+    
+    @Drone
+    AjaxSelenium selenium;
+    
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() {
+        return ShrinkWrap.create(ZipImporter.class, ARCHIVE_NAME).importFrom(new File(BUILD_DIRECTORY + '/' + ARCHIVE_NAME))
+                .as(WebArchive.class);
+    }
 
-    @BeforeMethod
+    @Before
     public void preparePage() {
         page = new HomePage(selenium, contextPath);
     }
@@ -40,7 +66,7 @@ public class NumberGuessTest extends AbstractTestCase {
             i++;
         }
 
-        assertTrue(page.isWon(), "The computer is supposed to win this game.");
+        assertTrue("The computer is supposed to win this game.",page.isWon());
     }
 
     @Test
@@ -51,13 +77,13 @@ public class NumberGuessTest extends AbstractTestCase {
 
         while (page.canGuess()) {
             page.guess(guess++);
-            assertTrue(guess <= 10, "Guess count exceeded.");
+            assertTrue("Guess count exceeded.",guess <= 10);
         }
 
         if (guess < 10) {
-            assertTrue(page.isWon(), "Player should not lose before 10th guess.");
+            assertTrue("Player should not lose before 10th guess.",page.isWon());
         } else {
-            assertTrue(page.isWon() || page.isLost(), "The game must be either lost or won after 10 attempts.");
+            assertTrue("The game must be either lost or won after 10 attempts.",page.isWon() || page.isLost());
         }
     }
 
@@ -70,9 +96,9 @@ public class NumberGuessTest extends AbstractTestCase {
         if (page.canGuess()) {
             page.reset();
 
-            assertEquals(page.getMin(), 0, "Reset did not work.");
-            assertEquals(page.getMax(), 100, "Reset did not work.");
-            assertEquals(page.getGuessLeft(), 10, "Reset did not work.");
+            assertEquals("Reset did not work.",page.getMin(), 0);
+            assertEquals( "Reset did not work.",page.getMax(), 100);
+            assertEquals("Reset did not work.",page.getGuessLeft(), 10);
         }
     }
 }
