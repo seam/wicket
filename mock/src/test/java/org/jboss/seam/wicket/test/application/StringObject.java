@@ -18,7 +18,7 @@ package org.jboss.seam.wicket.test.application;
 
 import java.io.Serializable;
 
-import org.jboss.seam.solder.core.Veto;
+import org.jboss.solder.core.Veto;
 
 /**
  * Simple object that will be produced.

@@ -22,7 +22,7 @@ import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 
-import org.jboss.seam.logging.Logger;
+import org.jboss.solder.logging.Logger;
 
 /**
  * Request object producer which can be injected and control from test class.
