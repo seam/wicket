@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import org.jboss.arquillian.ajocado.framework.AjaxSelenium;
 import org.jboss.arquillian.ajocado.locator.JQueryLocator;
+import org.jboss.arquillian.ajocado.utils.URLUtils;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import static org.jboss.arquillian.ajocado.locator.LocatorFactory.jq;
 import static org.jboss.arquillian.ajocado.Ajocado.waitForXhr;
@@ -16,13 +17,14 @@ public class HomePage {
     public static final JQueryLocator FIELD_INPUT = jq("[name='inputGuess']");
     public static final JQueryLocator PROMPT = jq("#prompt");
     public static final Pattern PROMPT_PATTERN = Pattern.compile("I'm thinking of a number between (\\d+) and (\\d+). You have (\\d+) guesses.");
+    public static final String HOME_PAGE = "/wicket-numberguess";
 
     @Drone
     private AjaxSelenium selenium;
 
     public HomePage(AjaxSelenium selenium, URL contextPath) {
         this.selenium = selenium;
-        selenium.open(contextPath);
+        selenium.open(URLUtils.buildUrl(contextPath, HOME_PAGE));
         selenium.waitForPageToLoad();
         reset();
     }
