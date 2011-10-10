@@ -21,6 +21,7 @@ import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -63,6 +64,7 @@ public class HomePageTest{
     SeamWicketTester tester;
 
     @Test
+    @Ignore // SEAMWICKET-44
     public void testGuessNumber() throws Exception {
         Assert.assertNotNull(tester);
 
@@ -78,6 +80,7 @@ public class HomePageTest{
     }
 
     @Test
+    @Ignore // SEAMWICKET-44
     public void testRestart() throws Exception {
         Assert.assertNotNull(tester);
 
