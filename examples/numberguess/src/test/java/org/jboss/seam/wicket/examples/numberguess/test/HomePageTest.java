@@ -14,14 +14,8 @@ import org.jboss.seam.wicket.mock.SeamWicketTester;
 import org.jboss.seam.wicket.util.NonContextual;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
-
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -30,6 +24,7 @@ import org.junit.runner.RunWith;
  * Test class for HomePage and SeamWicketTester.
  *
  * @author oranheim
+ * @author Jozef Hartinger
  */
 @RunWith(Arquillian.class)
 public class HomePageTest{
@@ -47,16 +42,7 @@ public class HomePageTest{
                 .addAsResource("org/jboss/seam/wicket/examples/numberguess/HomePage.html", "org/jboss/seam/wicket/examples/numberguess/HomePage.html")
                 .addAsWebResource("test-jetty-env.xml", "jetty-env.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsWebInfResource(new StringAsset("<jboss-deployment-structure>\n" +
-                        " <deployment>\n" +
-                        " <dependencies>\n" +
-                        " <module name=\"org.jboss.logmanager\" />\n" +
-                        " </dependencies>\n" +
-                        " </deployment>\n" +
-                        "</jboss-deployment-structure>"), "jboss-deployment-structure.xml")
-                .addAsLibraries(DependencyResolvers.use(MavenDependencyResolver.class).artifact("org.apache.wicket:wicket:1.4.15").resolveAs(JavaArchive.class))
-                .addAsLibraries(DependencyResolvers.use(MavenDependencyResolver.class).artifact("org.jboss.seam.solder:seam-solder:3.1.0.Beta2").resolveAs(JavaArchive.class))
-                .addAsLibraries(DependencyResolvers.use(MavenDependencyResolver.class).artifact("org.slf4j:slf4j-simple:1.6.1").resolveAs(JavaArchive.class));
+                .addAsLibraries(Dependencies.SOLDER, Dependencies.WICKET, Dependencies.SLF4J);
         return war;
     }
 
@@ -64,7 +50,6 @@ public class HomePageTest{
     SeamWicketTester tester;
 
     @Test
-    @Ignore // SEAMWICKET-44
     public void testGuessNumber() throws Exception {
         Assert.assertNotNull(tester);
 
@@ -80,7 +65,6 @@ public class HomePageTest{
     }
 
     @Test
-    @Ignore // SEAMWICKET-44
     public void testRestart() throws Exception {
         Assert.assertNotNull(tester);
 
