@@ -18,7 +18,7 @@ package org.jboss.seam.wicket.test.core;
 
 import javax.inject.Inject;
 
-import org.jboss.arquillian.api.Deployment;
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.wicket.SeamApplication;
 import org.jboss.seam.wicket.mock.SeamWicketTester;
@@ -28,11 +28,13 @@ import org.jboss.seam.wicket.test.application.ConversationTestPage;
 import org.jboss.seam.wicket.test.application.EmptyPage;
 import org.jboss.seam.wicket.test.application.RequestObjectProducer;
 import org.jboss.seam.wicket.test.application.RequestTestPage;
-import org.jboss.seam.wicket.test.util.MavenArtifactResolver;
 import org.jboss.seam.wicket.util.NonContextual;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,17 +55,24 @@ public class SeamApplicationTest {
                 .addPackage(NonContextual.class.getPackage())
                 .addPackage(SeamWicketTester.class.getPackage())
                         // Page for testRenderPage
-                .addAsResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPage.html")
-                .addAsResource("EmptyPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/EmptyPageExpected.html")
+                .addAsResource("EmptyPage.html", "org/jboss/seam/wicket/test/application/EmptyPage.html")
+                .addAsResource("EmptyPage.html", "org/jboss/seam/wicket/test/application/EmptyPageExpected.html")
                         // Page for testRequestScopeInjection
-                .addAsResource("RequestTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPage.html")
-                .addAsResource("RequestTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/RequestTestPageExpected.html")
+                .addAsResource("RequestTestPage.html", "org/jboss/seam/wicket/test/application/RequestTestPage.html")
+                .addAsResource("RequestTestPageExpected.html", "org/jboss/seam/wicket/test/application/RequestTestPageExpected.html")
                         // Page for testConversationScopeInjection
-                .addAsResource("ConversationTestPage.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPage.html")
-                .addAsResource("ConversationTestPageExpected.html", "WEB-INF/classes/org/jboss/seam/wicket/test/application/ConversationTestPageExpected.html")
+                .addAsResource("ConversationTestPage.html", "org/jboss/seam/wicket/test/application/ConversationTestPage.html")
+                .addAsResource("ConversationTestPageExpected.html", "org/jboss/seam/wicket/test/application/ConversationTestPageExpected.html")
 
-                .addAsWebResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsLibraries(MavenArtifactResolver.resolve("org.apache.wicket:wicket"))
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsLibraries(
+                        DependencyResolvers.use(MavenDependencyResolver.class)
+                        .configureFrom("../settings.xml")
+                        .loadMetadataFromPom("pom.xml")
+                        .artifact("org.jboss.solder:solder-impl")
+                        .artifact("org.apache.wicket:wicket").exclusion("org.slf4j:slf4j-api")
+                        .artifact("org.slf4j:slf4j-simple")
+                        .resolveAs(JavaArchive.class))
                 .setWebXML("test-web.xml");
     }
 
