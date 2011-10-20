@@ -44,6 +44,7 @@
    <modules>
       <module>impl</module>
       <module>mock</module>
+      <module>testsuite</module>
    </modules>
 
    <properties>
